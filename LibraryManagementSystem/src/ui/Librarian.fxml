@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Label layoutX="35.0" layoutY="82.0" text="MemberId" textFill="#e41414" />
+      <TextField layoutX="104.0" layoutY="77.0" prefHeight="25.0" prefWidth="115.0" />
+      <Label layoutX="52.0" layoutY="116.0" text="ISBN" textFill="#cd2121" />
+      <TextField layoutX="104.0" layoutY="111.0" prefHeight="25.0" prefWidth="115.0" />
+      <Button layoutX="122.0" layoutY="157.0" mnemonicParsing="false" text="search" />
+      <Label layoutX="141.0" layoutY="14.0" prefHeight="30.0" prefWidth="416.0" text="Library Management System" textFill="#d31818">
+         <font>
+            <Font size="25.0" />
+         </font>
+      </Label>
+      <TableView layoutX="50.0" layoutY="262.0" prefHeight="67.0" prefWidth="504.0">
+        <columns>
+          <TableColumn prefWidth="106.0" text="MemberId" />
+          <TableColumn prefWidth="97.0" text="Book" />
+            <TableColumn prefWidth="148.0" text="Issued Date" />
+            <TableColumn prefWidth="151.0" text="Due Date" />
+        </columns>
+      </TableView>
+      <Label layoutX="34.0" layoutY="44.0" prefHeight="21.0" prefWidth="173.0" text="Librarain Panel" textFill="#2b18b5">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>
