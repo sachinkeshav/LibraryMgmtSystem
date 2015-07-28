@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.text.*?>
 <?import javafx.scene.layout.*?>
 <?import java.lang.*?>
 <?import javafx.scene.control.*?>
@@ -7,17 +8,21 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="414.0" prefWidth="645.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <TableView layoutX="10.0" layoutY="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="82.0" prefWidth="629.0">
+      <TableView layoutX="53.0" layoutY="134.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="82.0" prefWidth="540.0">
          <columns>
             <TableColumn prefWidth="45.0" text="ISBN" />
-            <TableColumn prefWidth="130.0" text="BookName" />
             <TableColumn minWidth="0.0" prefWidth="0.0" text="BookName" />
             <TableColumn prefWidth="69.0" text="Author1" />
             <TableColumn prefWidth="83.0" text="Author2" />
             <TableColumn prefWidth="98.0" text="Author3" />
             <TableColumn prefWidth="113.0" text="CheckoutDays" />
-            <TableColumn prefWidth="108.0" text="Action" />
+            <TableColumn prefWidth="130.0" text="BookName" />
          </columns>
       </TableView>
+      <Label layoutX="133.0" layoutY="38.0" prefHeight="30.0" prefWidth="397.0" text="Library Management System" textFill="#c61414">
+         <font>
+            <Font size="25.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>
