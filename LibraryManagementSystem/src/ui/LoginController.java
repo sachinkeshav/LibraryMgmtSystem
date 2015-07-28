@@ -20,16 +20,10 @@ import javafx.stage.Stage;
 
 public class LoginController {
 	@FXML
-	private TextField userIdField;
+	private TextField userIdField, passwordField;
 
 	@FXML
-	private TextField passwordField;
-
-	@FXML
-	private Button librarianBtn;
-
-	@FXML
-	private Button adminBtn;
+	private Button submit;
 
 	@FXML
 	protected void handleSubmitButtonAction(ActionEvent event) throws IOException {
@@ -44,7 +38,6 @@ public class LoginController {
 			switch (auth) {
 			case ADMIN:
 				fxmlFile = "Admin.fxml";
-				String s = "";
 				break;
 			case LIBRARIAN:
 				fxmlFile = "Librarian.fxml";
@@ -56,13 +49,15 @@ public class LoginController {
 
 			Pane mainMenuRoot = FXMLLoader.load(getClass().getResource(fxmlFile));
 			Stage stage = new Stage();
-			stage.initModality(Modality.APPLICATION_MODAL);
-			// stage.initStyle(StageStyle.UNDECORATED);
+			stage.initModality(Modality.WINDOW_MODAL);
 			stage.setTitle("Main Menu");
 			stage.setScene(new Scene(mainMenuRoot));
 			stage.show();
 			userIdField.clear();
 			passwordField.clear();
+
+			Stage loginStage = (Stage) submit.getScene().getWindow();
+			loginStage.close();
 
 		} catch (LoginException e) {
 			Alert alert = new Alert(AlertType.ERROR);
