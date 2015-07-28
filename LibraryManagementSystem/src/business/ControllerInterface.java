@@ -4,7 +4,7 @@ public interface ControllerInterface {
 	public void login(String id, String password) throws LoginException;
 //	public void addNewMember(String memberId, String firstName, String lastName,
 //			String telNumber, Address addr) throws LibrarySystemException;
-//	public LibraryMember search(String memberId);
+	public LibraryMember search(String memberId);
 //	public void updateMemberInfo(String memberId, String firstName, String lastName,
 //			String telNumber, Address addr) throws LibrarySystemException;
 	public void checkoutBook(String memberId, String isbn) throws LibrarySystemException;

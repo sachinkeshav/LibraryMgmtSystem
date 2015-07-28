@@ -50,8 +50,14 @@ public class SystemController implements ControllerInterface {
 	 * 1001... Returns a LibraryMember if found, null otherwise
 	 * 
 	 */
-	// public LibraryMember search(String memberId) {
-
+	public LibraryMember search(String memberId) {
+		
+		System.out.println("test");
+		return null;
+		
+	}
+	
+	
 	/**
 	 * Same as creating a new member (because of how data is stored)
 	 */
