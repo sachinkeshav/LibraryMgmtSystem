@@ -61,6 +61,8 @@ public class LoginController {
 			stage.setTitle("Main Menu");
 			stage.setScene(new Scene(mainMenuRoot));
 			stage.show();
+			userIdField.clear();
+			passwordField.clear();
 
 		} catch (LoginException e) {
 			Alert alert = new Alert(AlertType.ERROR);

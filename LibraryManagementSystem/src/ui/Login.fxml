@@ -29,6 +29,6 @@
       <Label text="Password" GridPane.rowIndex="3" />
       <Button mnemonicParsing="false" text="Submit" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="4" onAction="#handleSubmitButtonAction"/>
       <TextField fx:id="userIdField" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="2" />
-      <TextField fx:id="passwordField" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="3" />
+      <PasswordField fx:id="passwordField" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="3" />
    </children>
 </GridPane>

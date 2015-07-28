@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<GridPane fx:controller="ui.AuthController" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
   <columnConstraints>
     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
   </columnConstraints>
@@ -27,7 +27,7 @@
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
-                        <Button mnemonicParsing="false" prefHeight="72.0" prefWidth="124.0" text="Library" textFill="#eb1e1e">
+                        <Button mnemonicParsing="false" prefHeight="72.0" prefWidth="124.0" text="Library" textFill="#eb1e1e" onAction="#handleLibrarianAuth">
                            <font>
                               <Font size="25.0" />
                            </font>
@@ -46,7 +46,7 @@
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
-                        <Button mnemonicParsing="false" prefHeight="79.0" prefWidth="135.0" text="Admin" textFill="#c61b1b">
+                        <Button mnemonicParsing="false" prefHeight="79.0" prefWidth="135.0" text="Admin" textFill="#c61b1b" onAction="#handleAdminAuth">
                            <font>
                               <Font size="25.0" />
                            </font>
