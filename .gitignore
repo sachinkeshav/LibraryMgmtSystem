@@ -38,7 +38,7 @@ Thumbs.db
 
 # IDE support files #
 #####################
-# .classpath
+.classpath
 .launch
 # .project
 *.launch
