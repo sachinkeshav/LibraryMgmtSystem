@@ -19,7 +19,7 @@
             <TableColumn prefWidth="113.0" text="CheckoutDays" />
          </columns>
       </TableView>
-      <Label layoutX="90.0" layoutY="41.0" prefHeight="30.0" prefWidth="541.0" text="Library Management System" textFill="#ff2727">
+      <Label layoutX="90.0" layoutY="41.0" prefHeight="30.0" prefWidth="541.0" text="Update Records" textFill="#ff2727">
          <font>
             <Font size="25.0" />
          </font>
