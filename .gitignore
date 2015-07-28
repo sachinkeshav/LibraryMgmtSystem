@@ -81,6 +81,7 @@ web-app/WEB-INF/classes/
 ###########################
 target/
 build/
+bin/
 
 # other #
 #########
