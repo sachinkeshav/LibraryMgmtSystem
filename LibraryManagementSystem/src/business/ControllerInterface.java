@@ -1,11 +1,7 @@
 package business;
 
-import java.util.List;
-
-import dataaccess.DataAccess;
-import dataaccess.DataAccessFacade;
-
 public interface ControllerInterface {
+	public void login(String id, String password) throws LoginException;
 //	public void addNewMember(String memberId, String firstName, String lastName,
 //			String telNumber, Address addr) throws LibrarySystemException;
 //	public LibraryMember search(String memberId);

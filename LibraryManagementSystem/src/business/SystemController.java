@@ -8,8 +8,19 @@ import dataaccess.DataAccessFacade;
 import dataaccess.User;
 
 public class SystemController implements ControllerInterface {
+	private static SystemController INSTANCE = new SystemController();
+
+	private SystemController() {
+
+	}
+
+	public static SystemController getInstance() {
+		return INSTANCE;
+	}
+
 	public static Auth currentAuth = null;
 	
+	@Override
 	public void login(String id, String password) throws LoginException {
 		DataAccess da = new DataAccessFacade();
 		HashMap<String, User> map = da.readUserMap();
@@ -74,6 +85,7 @@ public class SystemController implements ControllerInterface {
 //			throws LibrarySystemException {
 		
 	
+	@Override
 	public boolean addBookCopy(String isbn) throws LibrarySystemException {
 		Book book = searchBook(isbn);
 		if(book == null) throw new LibrarySystemException("No book with isbn " + isbn 
