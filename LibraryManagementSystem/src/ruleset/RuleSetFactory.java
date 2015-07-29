@@ -3,6 +3,7 @@ package ruleset;
 import java.util.HashMap;
 
 import ui.controller.AdminController;
+import ui.controller.LoginController;
 
 final public class RuleSetFactory {
 	private RuleSetFactory() {
@@ -12,6 +13,7 @@ final public class RuleSetFactory {
 
 	static {
 		map.put(AdminController.class, new MemberRuleSet());
+		map.put(LoginController.class, new LoginRuleSet());
 	}
 
 	public static RuleSet getRuleSet(Object c) {

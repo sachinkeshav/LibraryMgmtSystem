@@ -17,6 +17,9 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import ruleset.RuleException;
+import ruleset.RuleSet;
+import ruleset.RuleSetFactory;
 
 public class LoginController {
 	@FXML
@@ -29,8 +32,11 @@ public class LoginController {
 	protected void handleSubmitAction(ActionEvent event) throws IOException {
 		String id = userIdField.getText();
 		String password = passwordField.getText();
+		RuleSet loginRules = RuleSetFactory.getRuleSet(this);
 		ControllerInterface controller = SystemController.getInstance();
+
 		try {
+			loginRules.applyRules(this);
 			controller.login(id, password);
 			Auth auth = SystemController.currentAuth;
 			String fxmlFile = "";
@@ -58,6 +64,12 @@ public class LoginController {
 			Stage loginStage = (Stage) submit.getScene().getWindow();
 			loginStage.close();
 
+		} catch (RuleException e1) {
+			Alert alert = new Alert(AlertType.ERROR);
+			alert.setTitle("Login Error!");
+			alert.setHeaderText("Incorrect login information!");
+			alert.setContentText(e1.getMessage());
+			alert.show();
 		} catch (LoginException e) {
 			Alert alert = new Alert(AlertType.ERROR);
 			alert.setTitle("Login Error!");
@@ -65,5 +77,13 @@ public class LoginController {
 			alert.setContentText(e.getMessage());
 			alert.show();
 		}
+	}
+
+	public TextField getUserIdField() {
+		return userIdField;
+	}
+
+	public TextField getPasswordField() {
+		return passwordField;
 	}
 }
