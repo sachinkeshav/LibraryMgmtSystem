@@ -21,6 +21,7 @@
       <RowConstraints maxHeight="278.0" minHeight="10.0" prefHeight="35.0" vgrow="SOMETIMES" />
       <RowConstraints maxHeight="278.0" minHeight="10.0" prefHeight="26.0" vgrow="SOMETIMES" />
       <RowConstraints maxHeight="278.0" minHeight="10.0" prefHeight="29.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="278.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
       <Label alignment="CENTER_RIGHT" prefHeight="26.0" prefWidth="228.0" text="Add Members" textFill="#eb0c0c">
@@ -35,13 +36,15 @@
       <Label alignment="CENTER_RIGHT" prefHeight="15.0" prefWidth="123.0" text="City" GridPane.rowIndex="5" />
       <Label alignment="CENTER_RIGHT" prefHeight="15.0" prefWidth="134.0" text="State" GridPane.rowIndex="6" />
       <Label alignment="CENTER_RIGHT" prefHeight="15.0" prefWidth="123.0" text="Zip" GridPane.rowIndex="7" />
-      <Button onAction="#handleSaveMemberButton" mnemonicParsing="false" text="Save" GridPane.columnIndex="1" GridPane.rowIndex="8" />
-      <TextField fx:id="memberId"GridPane.columnIndex="1" GridPane.rowIndex="1" />
+      <Button mnemonicParsing="false" onAction="#handleSaveMemberButton" text="Save" GridPane.columnIndex="1" GridPane.rowIndex="9" />
+      <TextField fx:id="memberId" GridPane.columnIndex="1" GridPane.rowIndex="1" />
       <TextField fx:id="firstName" GridPane.columnIndex="1" GridPane.rowIndex="2" />
       <TextField fx:id="lastName" GridPane.columnIndex="1" GridPane.rowIndex="3" />
       <TextField fx:id="street" GridPane.columnIndex="1" GridPane.rowIndex="4" />
       <TextField fx:id="city" GridPane.columnIndex="1" GridPane.rowIndex="5" />
       <TextField fx:id="state" GridPane.columnIndex="1" GridPane.rowIndex="6" />
       <TextField fx:id="zip" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+      <Label alignment="CENTER_RIGHT" prefHeight="16.0" prefWidth="173.0" text="PhoneNumber" GridPane.rowIndex="8" />
+      <TextField fx:id="phone" GridPane.columnIndex="1" GridPane.rowIndex="8" />
    </children>
 </GridPane>
