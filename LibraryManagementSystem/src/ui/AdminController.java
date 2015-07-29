@@ -2,6 +2,7 @@ package ui;
 
 import java.io.IOException;
 
+import business.Address;
 import business.Book;
 import business.ControllerInterface;
 import business.LibrarySystemException;
@@ -20,10 +21,11 @@ public class AdminController {
 
 	// addMember controls
 	@FXML
-	TextField memberId, firstName, lastName, street, city, state, zip, isbn;
+	TextField memberId, firstName, lastName, street, city, state, zip, phone, isbn;
 
 	@FXML
 	private GridPane addMemberGrid;
+
 	@FXML
 	private ScrollPane scrollContainer;
 
@@ -70,19 +72,18 @@ public class AdminController {
 
 	@FXML
 	public void handleSaveMemberButton(ActionEvent e) {
-
-		/*try {
+		try {
 			ControllerInterface controller = SystemController.getInstance();
-			controller.addNewMember(memberId.getText(), firstName.getText(), lastName.getText(), street.getText(),
-					city.getText(), state.getText(), zip.getText());
-
-		} catch (LoginException e2) {
+			Address address = controller.addAddress(street.getText(), city.getText(), state.getText(), zip.getText());
+			controller.addNewMember(memberId.getText(), firstName.getText(), lastName.getText(), phone.getText(),
+					address);
+		} catch (LibrarySystemException e2) {
 			Alert alert = new Alert(AlertType.ERROR);
-			alert.setTitle("Saving Failed!");
-			alert.setHeaderText("Sorry! Try Again");
+			alert.setTitle("Failed!");
+			alert.setHeaderText("Error");
 			alert.setContentText(e2.getMessage());
 			alert.show();
-		}*/
+		}
 	}
 
 }

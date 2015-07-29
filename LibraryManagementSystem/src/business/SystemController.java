@@ -1,6 +1,8 @@
 package business;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import dataaccess.Auth;
 import dataaccess.DataAccess;
@@ -35,14 +37,31 @@ public class SystemController implements ControllerInterface {
 
 	}
 
+	@Override
+	public Address addAddress(String street, String city, String state, String zip) {
+		return new Address(street, city, state, zip);
+	}
+
 	/**
 	 * This method checks if memberId already exists -- if so, it cannot be
 	 * added as a new member, and an exception is thrown. If new, creates a new
 	 * LibraryMember based on input data and uses DataAccess to store it.
 	 * 
 	 */
+
 	public void addNewMember(String memberId, String firstName, String lastName, String telNumber, Address addr)
 			throws LibrarySystemException {
+		DataAccess dataAccess = new DataAccessFacade();
+		/*
+		 * List<LibraryMember> memberList = new ArrayList<>();
+		 * memberList.add(new LibraryMember(firstName, lastName, telNumber,
+		 * addr, memberId));
+		 */
+		HashMap<String, LibraryMember> map = dataAccess.readMemberMap();
+		if (map.containsKey(memberId)) {
+			throw new LibrarySystemException("Member already exists");
+		}
+		dataAccess.saveNewMember(new LibraryMember(firstName, lastName, telNumber, addr, memberId));
 	}
 
 	/**
@@ -51,13 +70,12 @@ public class SystemController implements ControllerInterface {
 	 * 
 	 */
 	public LibraryMember search(String memberId) {
-		
+
 		System.out.println("test");
 		return null;
-		
+
 	}
-	
-	
+
 	/**
 	 * Same as creating a new member (because of how data is stored)
 	 */

@@ -55,7 +55,6 @@ public class LoginController {
 			stage.show();
 			userIdField.clear();
 			passwordField.clear();
-
 			Stage loginStage = (Stage) submit.getScene().getWindow();
 			loginStage.close();
 
