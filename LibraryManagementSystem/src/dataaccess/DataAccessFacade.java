@@ -24,9 +24,11 @@ public class DataAccessFacade implements DataAccess {
 	public static final String DATE_PATTERN = "MM/dd/yyyy";
 
 	//// specialized lookup methods
-	// public LibraryMember searchMember(String memberId) {
-	// implement
-	// }
+	public LibraryMember searchMember(String memberId) {
+		HashMap<String, LibraryMember> libraryMembersmap = readMemberMap();
+		LibraryMember m = libraryMembersmap.get(memberId);
+		return m;
+	}
 
 	public Book searchBook(String isbn) {
 		HashMap<String, Book> booksMap = readBooksMap();
@@ -49,7 +51,12 @@ public class DataAccessFacade implements DataAccess {
 	// saveNewMember
 	// public void saveNewMember(LibraryMember member)
 
-	// public void updateMember(LibraryMember member)
+	public void updateMember(LibraryMember member) {
+		HashMap<String, LibraryMember> libraryMembersmap = readMemberMap();
+		libraryMembersmap.put(member.getMemberId(), member);
+		saveToStorage(StorageType.MEMBERS, libraryMembersmap);
+	}
+
 	// save new lendable item
 	public void saveNewBook(Book book) {
 		HashMap<String, Book> bookMap = readBooksMap();
@@ -65,7 +72,10 @@ public class DataAccessFacade implements DataAccess {
 		return (HashMap<String, Book>) readFromStorage(StorageType.BOOKS);
 	}
 
-	// public HashMap<String, LibraryMember> readMemberMap() {
+	@SuppressWarnings("unchecked")
+	public HashMap<String, LibraryMember> readMemberMap() {
+		return (HashMap<String, LibraryMember>) readFromStorage(StorageType.MEMBERS);
+	}
 
 	@SuppressWarnings("unchecked")
 	public HashMap<String, User> readUserMap() {

@@ -1,6 +1,9 @@
 package business;
 
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import dataaccess.Auth;
 import dataaccess.DataAccess;
@@ -51,13 +54,10 @@ public class SystemController implements ControllerInterface {
 	 * 
 	 */
 	public LibraryMember search(String memberId) {
-		
-		System.out.println("test");
-		return null;
-		
+		DataAccess da = new DataAccessFacade();
+		return da.searchMember(memberId);
 	}
-	
-	
+
 	/**
 	 * Same as creating a new member (because of how data is stored)
 	 */
@@ -102,8 +102,47 @@ public class SystemController implements ControllerInterface {
 
 	@Override
 	public void checkoutBook(String memberId, String isbn) throws LibrarySystemException {
-		// TODO Auto-generated method stub
+		if (search(memberId) != null) {
+			if (searchBook(isbn) != null) {
+				Book currentBook = searchBook(isbn);
+				BookCopy[] book = currentBook.getCopies();
+				for (BookCopy bc : book) {
+					if (computeStatus(bc)) {
+						DataAccessFacade dc = new DataAccessFacade();
+						LocalDate currentDate = LocalDate.now();
+						LocalDate dueDate = currentDate.plusDays(bc.getBook().getMaxCheckoutLength());
+						CheckoutRecordEntry newCheckoutRecordEntry = new CheckoutRecordEntry(currentDate, dueDate, bc);
+						LibraryMember member = search(memberId);
+						CheckoutRecord rc = member.getCheckoutRecord();
+						if (rc.getCheckoutRecordEntries() == null) {
+							List<CheckoutRecordEntry> entries = new ArrayList<>();
+							entries.add(newCheckoutRecordEntry);
+							member.getCheckoutRecord().setCheckoutRecordEntries(entries);
+						} else {
+							member.getCheckoutRecord().getCheckoutRecordEntries().add(newCheckoutRecordEntry);
+						}
+						bc.changeAvailability();
+						dc.updateMember(member);
+						dc.saveNewBook(currentBook);
+						break;
+					}
+				}
+			} else {
+				throw new LibrarySystemException("No book with isbn " + isbn + " is in the library collection!");
+			}
+		} else {
+			throw new LibrarySystemException("No member with id " + memberId + " is in the library system!");
+		}
 
+	}
+
+	@Override
+	public boolean computeStatus(BookCopy copy) {
+		return copy.isAvailable();
+	}
+
+	public boolean availableForCheckout(String memberId, String isbn) {
+		return false;
 	}
 
 }
