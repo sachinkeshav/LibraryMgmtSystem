@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane fx:controller="ui.controller.LibrarianController" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="588.0" prefWidth="653.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="588.0" prefWidth="653.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.controller.LibrarianController">
    <children>
       <Label layoutX="17.0" layoutY="168.0" text="MemberId" textFill="#e41414">
          <font>
@@ -18,24 +18,26 @@
             <Font size="20.0" />
          </font></Label>
       <TextField fx:id="isbn" layoutX="144.0" layoutY="208.0" prefHeight="25.0" prefWidth="148.0" />
-      <Button onAction="#searchButtonAction" layoutX="151.0" layoutY="262.0" mnemonicParsing="false" text="search" textFill="#dd0a0a" />
+      <Button layoutX="151.0" layoutY="262.0" mnemonicParsing="false" onAction="#searchButtonAction" text="search" textFill="#dd0a0a" />
       <Label layoutX="123.0" layoutY="59.0" prefHeight="35.0" prefWidth="435.0" text="Library Management System" textFill="#d31818">
          <font>
             <Font size="29.0" />
          </font>
       </Label>
-      <TableView layoutX="75.0" layoutY="411.0" prefHeight="67.0" prefWidth="504.0">
+          <TableView fx:id="table" layoutX="75.0" layoutY="411.0" prefHeight="67.0" prefWidth="504.0">
         <columns>
-          <TableColumn prefWidth="106.0" text="MemberId" />
-          <TableColumn prefWidth="97.0" text="Book" />
-            <TableColumn prefWidth="148.0" text="Issued Date" />
-            <TableColumn prefWidth="151.0" text="Due Date" />
+          <TableColumn fx:id="memberIdCol" prefWidth="106.0" text="MemberId" />
+          <TableColumn fx:id="bookCol" prefWidth="97.0" text="Book" />
+            <TableColumn fx:id="issueDateCol" prefWidth="148.0" text="Issued Date" />
+            <TableColumn fx:id="dueDateCol" prefWidth="151.0" text="Due Date" />
         </columns>
-      </TableView>
+      </TableView>    
+      
       <Label layoutX="36.0" layoutY="119.0" prefHeight="21.0" prefWidth="173.0" text="Librarain Panel" textFill="#2b18b5" underline="true">
          <font>
             <Font size="23.0" />
          </font>
       </Label>
+      <Button onAction="#handleSearchByMemberId" layoutX="316.0" layoutY="170.0" mnemonicParsing="false" text="searchById" textFill="#d30909" underline="true" />
    </children>
 </AnchorPane>
