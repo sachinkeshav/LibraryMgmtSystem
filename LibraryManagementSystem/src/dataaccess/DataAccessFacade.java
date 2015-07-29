@@ -11,7 +11,6 @@ import java.util.HashMap;
 import java.util.List;
 
 import business.Book;
-import business.BookCopy;
 import business.LibraryMember;
 
 public class DataAccessFacade implements DataAccess {
@@ -80,6 +79,15 @@ public class DataAccessFacade implements DataAccess {
 	@SuppressWarnings("unchecked")
 	public HashMap<String, User> readUserMap() {
 		return (HashMap<String, User>) readFromStorage(StorageType.USERS);
+	}
+
+	@Override
+	public void saveNewMember(LibraryMember member) {
+		HashMap<String, LibraryMember> memberMap = readMemberMap();
+		String memerId = member.getMemberId();
+		memberMap.put(memerId, member);
+		saveToStorage(StorageType.MEMBERS, memberMap);
+
 	}
 
 	///// load methods - these place test data into the storage area

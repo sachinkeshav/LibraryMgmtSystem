@@ -38,14 +38,27 @@ public class SystemController implements ControllerInterface {
 
 	}
 
+	@Override
+	public Address addAddress(String street, String city, String state, String zip) {
+		return new Address(street, city, state, zip);
+	}
+
 	/**
 	 * This method checks if memberId already exists -- if so, it cannot be
 	 * added as a new member, and an exception is thrown. If new, creates a new
 	 * LibraryMember based on input data and uses DataAccess to store it.
 	 * 
 	 */
+
+	@Override
 	public void addNewMember(String memberId, String firstName, String lastName, String telNumber, Address addr)
 			throws LibrarySystemException {
+		DataAccess dataAccess = new DataAccessFacade();
+		HashMap<String, LibraryMember> map = dataAccess.readMemberMap();
+		if (map.containsKey(memberId)) {
+			throw new LibrarySystemException("Member already exists");
+		}
+		dataAccess.saveNewMember(new LibraryMember(firstName, lastName, telNumber, addr, memberId));
 	}
 
 	/**
@@ -53,6 +66,7 @@ public class SystemController implements ControllerInterface {
 	 * 1001... Returns a LibraryMember if found, null otherwise
 	 * 
 	 */
+	@Override
 	public LibraryMember search(String memberId) {
 		DataAccess da = new DataAccessFacade();
 		return da.searchMember(memberId);
@@ -93,6 +107,10 @@ public class SystemController implements ControllerInterface {
 		if (book == null)
 			throw new LibrarySystemException("No book with isbn " + isbn + " is in the library collection!");
 		book.addCopy();
+
+		DataAccess da = new DataAccessFacade();
+		da.saveNewBook(book);
+
 		return true;
 	}
 

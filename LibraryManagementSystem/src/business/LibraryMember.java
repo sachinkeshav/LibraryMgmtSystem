@@ -29,4 +29,9 @@ public class LibraryMember extends Person implements Serializable {
 		this.checkoutRecord = checkoutRecord;
 	}
 
+	@Override
+	public String toString() {
+		return "[" + memberId + ":" + super.getFirstName() + ", " + super.getLastName() + "]";
+	}
+
 }
