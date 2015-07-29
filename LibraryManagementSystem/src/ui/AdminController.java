@@ -2,25 +2,25 @@ package ui;
 
 import java.io.IOException;
 
+import business.Book;
 import business.ControllerInterface;
-import business.LoginException;
+import business.LibrarySystemException;
 import business.SystemController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.LoadException;
 import javafx.scene.Parent;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.GridPane;
 
 public class AdminController {
 
 	// addMember controls
 	@FXML
-	TextField memberId, firstName, lastName, street, city, state, zip;
+	TextField memberId, firstName, lastName, street, city, state, zip, isbn;
 
 	@FXML
 	private GridPane addMemberGrid;
@@ -37,6 +37,23 @@ public class AdminController {
 	public void handleNewCopy(ActionEvent e) throws IOException {
 		Parent root = FXMLLoader.load(getClass().getResource("AddCopy.fxml"));
 		scrollContainer.setContent(root);
+	}
+
+	@FXML
+	public void handleSaveCopy(ActionEvent e) throws IOException {
+		String isbnVal = isbn.getText();
+		ControllerInterface controller = SystemController.getInstance();
+		try {
+			controller.addBookCopy(isbnVal);
+			Book book = controller.searchBook(isbnVal);
+			System.out.println("Successfully added a copy of " + book.getTitle());
+		} catch (LibrarySystemException e1) {
+			Alert alert = new Alert(AlertType.ERROR);
+			alert.setTitle("Error!");
+			alert.setHeaderText("Incorrect ISBN information!");
+			alert.setContentText(e1.getMessage());
+			alert.show();
+		}
 	}
 
 	@FXML

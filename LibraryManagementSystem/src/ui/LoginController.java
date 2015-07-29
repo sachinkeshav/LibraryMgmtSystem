@@ -26,7 +26,7 @@ public class LoginController {
 	private Button submit;
 
 	@FXML
-	protected void handleSubmitButtonAction(ActionEvent event) throws IOException {
+	protected void handleSubmitAction(ActionEvent event) throws IOException {
 		String id = userIdField.getText();
 		String password = passwordField.getText();
 		ControllerInterface controller = SystemController.getInstance();
