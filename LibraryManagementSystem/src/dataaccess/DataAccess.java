@@ -4,9 +4,10 @@ import java.util.HashMap;
 
 import business.Book;
 import business.LibraryMember;
+import business.LibrarySystemException;
 
 public interface DataAccess {
-	public LibraryMember searchMember(String memberId);
+	public LibraryMember searchMember(String memberId)throws LibrarySystemException;
 
 	public Book searchBook(String isbn);
 

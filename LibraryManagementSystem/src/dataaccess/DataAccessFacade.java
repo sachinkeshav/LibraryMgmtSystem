@@ -12,6 +12,7 @@ import java.util.List;
 
 import business.Book;
 import business.LibraryMember;
+import business.LibrarySystemException;
 
 public class DataAccessFacade implements DataAccess {
 
@@ -23,9 +24,10 @@ public class DataAccessFacade implements DataAccess {
 	public static final String DATE_PATTERN = "MM/dd/yyyy";
 
 	//// specialized lookup methods
-	public LibraryMember searchMember(String memberId) {
+	public LibraryMember searchMember(String memberId) throws LibrarySystemException{
 		HashMap<String, LibraryMember> libraryMembersmap = readMemberMap();
 		LibraryMember m = libraryMembersmap.get(memberId);
+		if(m==null) throw new LibrarySystemException("Member not found !!");
 		return m;
 	}
 

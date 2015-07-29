@@ -64,10 +64,11 @@ public class SystemController implements ControllerInterface {
 	/**
 	 * Reads data store for a library member with specified id. Ids begin at
 	 * 1001... Returns a LibraryMember if found, null otherwise
+	 * @throws LibrarySystemException 
 	 * 
 	 */
 	@Override
-	public LibraryMember search(String memberId) {
+	public LibraryMember search(String memberId) throws LibrarySystemException {
 		DataAccess da = new DataAccessFacade();
 		return da.searchMember(memberId);
 	}

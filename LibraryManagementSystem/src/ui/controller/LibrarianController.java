@@ -70,32 +70,49 @@ public class LibrarianController {
 
 	public void handleCheckoutButton() {
 		SystemController mainController = SystemController.getInstance();
-		LibraryMember member = mainController.search(memberId.getText());
-		List<CheckoutRecordEntry> checkoutRecordEntries = member.getCheckoutRecord().getCheckoutRecordEntries();
-		CheckoutRecordEntry currentEntry = checkoutRecordEntries.get(checkoutRecordEntries.size() - 1);
-		int copyNum = currentEntry.getCopyNum().getCopyNum();
-		LocalDate dueDate = currentEntry.getDueDate();
-		LocalDate checkoutDate = currentEntry.getCheckoutDate();
+		LibraryMember member;
+		try {
+			member = mainController.search(memberId.getText());
+			List<CheckoutRecordEntry> checkoutRecordEntries = member.getCheckoutRecord().getCheckoutRecordEntries();
+			CheckoutRecordEntry currentEntry = checkoutRecordEntries.get(checkoutRecordEntries.size() - 1);
+			int copyNum = currentEntry.getCopyNum().getCopyNum();
+			LocalDate dueDate = currentEntry.getDueDate();
+			LocalDate checkoutDate = currentEntry.getCheckoutDate();
 
-		ObservableList<CheckoutRecordEntry> data = FXCollections.observableArrayList(checkoutRecordEntries);
-		for (int i = (data.size() - 1); i > 0; i--) {
-			dueDateCol.setCellValueFactory(new PropertyValueFactory<>("dueDate"));
-			issueDateCol.setCellValueFactory(new PropertyValueFactory<>("checkoutDate"));
-			table.setItems(data);
-
+			ObservableList<CheckoutRecordEntry> data = FXCollections.observableArrayList(checkoutRecordEntries);
+			for (int i = (data.size() - 1); i > 0; i--) {
+				dueDateCol.setCellValueFactory(new PropertyValueFactory<>("dueDate"));
+				issueDateCol.setCellValueFactory(new PropertyValueFactory<>("checkoutDate"));
+				table.setItems(data);
+			}
+		} catch (LibrarySystemException e) {
+			e.printStackTrace();
 		}
+
 	}
 
 	public void handleSearchByMemberId() {
 		SystemController controller = SystemController.getInstance();
-		LibraryMember member = controller.search(memberId.getText());
-		List<CheckoutRecordEntry> checkoutRecordEntries = member.getCheckoutRecord().getCheckoutRecordEntries();
-		System.out.println("MemberId " + memberId.getText());
-		System.out.println("ISBN\t\tTitle\t\tAuthor(s)\t\tCopyNumber\t\tCheckoutDate\t\tDueDate");
-		for (CheckoutRecordEntry entry : checkoutRecordEntries) {
-			System.out.println(entry.getCopyNum().getBook().getIsbn() + " " + entry.getCopyNum().getBook().getTitle()
-					+ " " + entry.getCopyNum().getBook().getAuthors() + "\t " + entry.getCopyNum().getCopyNum()
-					+ "\t\t\t " + entry.getCheckoutDate() + "\t \t" + entry.getCheckoutDate());
+		LibraryMember member = null;
+		try {
+			member = controller.search(memberId.getText());
+			System.out.println(member);
+			List<CheckoutRecordEntry> checkoutRecordEntries = member.getCheckoutRecord().getCheckoutRecordEntries();
+			System.out.println("MemberId " + memberId.getText());
+			System.out.println("ISBN\t\tTitle\t\tAuthor(s)\t\tCopyNumber\t\tCheckoutDate\t\tDueDate");
+			for (CheckoutRecordEntry entry : checkoutRecordEntries) {
+				System.out.println(
+						entry.getCopyNum().getBook().getIsbn() + " " + entry.getCopyNum().getBook().getTitle() + " "
+								+ entry.getCopyNum().getBook().getAuthors() + "\t " + entry.getCopyNum().getCopyNum()
+								+ "\t\t\t " + entry.getCheckoutDate() + "\t \t" + entry.getCheckoutDate());
+			}
+		} catch (LibrarySystemException e) {
+			Alert alert = new Alert(AlertType.ERROR);
+			alert.setTitle("Error!");
+			alert.setHeaderText("Member not found!");
+			alert.setContentText(e.getMessage());
+			alert.show();
+
 		}
 
 	}
