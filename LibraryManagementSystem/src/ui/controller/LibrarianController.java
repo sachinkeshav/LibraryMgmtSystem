@@ -86,7 +86,7 @@ public class LibrarianController {
 		}
 	}
 
-	public void handleSearchByMemberId() {
+	@FXML public void handleSearchByMemberId() {
 		SystemController controller = SystemController.getInstance();
 		LibraryMember member = controller.search(memberId.getText());
 		List<CheckoutRecordEntry> checkoutRecordEntries = member.getCheckoutRecord().getCheckoutRecordEntries();
