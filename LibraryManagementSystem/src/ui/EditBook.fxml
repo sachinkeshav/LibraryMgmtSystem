@@ -8,7 +8,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="414.0" prefWidth="645.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <TableView layoutX="62.0" layoutY="129.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="99.0" prefWidth="541.0">
+      <TableView layoutX="61.0" layoutY="182.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="99.0" prefWidth="541.0">
          <columns>
             <TableColumn prefWidth="45.0" text="ISBN" />
             <TableColumn prefWidth="130.0" text="BookName" />
@@ -19,7 +19,7 @@
             <TableColumn prefWidth="113.0" text="CheckoutDays" />
          </columns>
       </TableView>
-      <Label layoutX="90.0" layoutY="41.0" prefHeight="30.0" prefWidth="541.0" text="Update Records" textFill="#ff2727">
+      <Label alignment="CENTER" layoutX="80.0" layoutY="113.0" prefHeight="30.0" prefWidth="541.0" text="Update Records" textFill="#ff2727">
          <font>
             <Font size="25.0" />
          </font>
