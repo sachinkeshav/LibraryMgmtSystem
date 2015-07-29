@@ -48,7 +48,14 @@ public class AdminController {
 		try {
 			controller.addBookCopy(isbnVal);
 			Book book = controller.searchBook(isbnVal);
-			System.out.println("Successfully added a copy of " + book.getTitle());
+
+			Alert alert = new Alert(AlertType.INFORMATION);
+			alert.setTitle("Add Book Coy");
+			alert.setHeaderText("Successful!!!");
+			alert.setContentText("Successfully added a copy of \"" + book.getTitle() + "\", " + "copy number "
+					+ book.getNumCopies());
+			alert.show();
+			isbn.clear();
 		} catch (LibrarySystemException e1) {
 			Alert alert = new Alert(AlertType.ERROR);
 			alert.setTitle("Error!");
