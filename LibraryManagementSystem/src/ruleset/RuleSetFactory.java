@@ -2,7 +2,7 @@ package ruleset;
 
 import java.util.HashMap;
 
-import ui.AdminController;
+import ui.controller.AdminController;
 
 final public class RuleSetFactory {
 	private RuleSetFactory() {

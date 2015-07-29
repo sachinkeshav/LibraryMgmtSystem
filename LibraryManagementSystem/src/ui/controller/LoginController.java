@@ -1,4 +1,4 @@
-package ui;
+package ui.controller;
 
 import java.io.IOException;
 
@@ -37,13 +37,13 @@ public class LoginController {
 
 			switch (auth) {
 			case ADMIN:
-				fxmlFile = "Admin.fxml";
+				fxmlFile = "../Admin.fxml";
 				break;
 			case LIBRARIAN:
-				fxmlFile = "Librarian.fxml";
+				fxmlFile = "../Librarian.fxml";
 				break;
 			case BOTH:
-				fxmlFile = "MainMenu.fxml";
+				fxmlFile = "../MainMenu.fxml";
 				break;
 			}
 

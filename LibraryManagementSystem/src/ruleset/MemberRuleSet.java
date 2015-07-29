@@ -1,6 +1,6 @@
 package ruleset;
 
-import ui.AdminController;
+import ui.controller.AdminController;
 
 final public class MemberRuleSet implements RuleSet {
 	// package level access

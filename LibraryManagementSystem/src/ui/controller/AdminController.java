@@ -1,4 +1,4 @@
-package ui;
+package ui.controller;
 
 import java.io.IOException;
 
@@ -70,13 +70,13 @@ public class AdminController {
 
 	@FXML
 	public void handleNewMember(ActionEvent e) throws IOException {
-		Parent root = FXMLLoader.load(getClass().getResource("AddMember.fxml"));
+		Parent root = FXMLLoader.load(getClass().getResource("../AddMember.fxml"));
 		scrollContainer.setContent(root);
 	}
 
 	@FXML
 	public void handleNewCopy(ActionEvent e) throws IOException {
-		Parent root = FXMLLoader.load(getClass().getResource("AddCopy.fxml"));
+		Parent root = FXMLLoader.load(getClass().getResource("../AddCopy.fxml"));
 		scrollContainer.setContent(root);
 	}
 
@@ -106,13 +106,13 @@ public class AdminController {
 
 	@FXML
 	public void handleEditBook(ActionEvent e) throws IOException {
-		Parent root = FXMLLoader.load(getClass().getResource("EditBook.fxml"));
+		Parent root = FXMLLoader.load(getClass().getResource("../EditBook.fxml"));
 		scrollContainer.setContent(root);
 	}
 
 	@FXML
 	public void handleNewBook(ActionEvent e) throws IOException {
-		Parent root = FXMLLoader.load(getClass().getResource("AddBook.fxml"));
+		Parent root = FXMLLoader.load(getClass().getResource("../AddBook.fxml"));
 		scrollContainer.setContent(root);
 	}
 
