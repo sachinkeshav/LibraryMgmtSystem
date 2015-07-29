@@ -25,7 +25,7 @@
         <Button fx:id="submit" mnemonicParsing="false" onAction="#handleSubmitAction" prefHeight="26.0" prefWidth="78.0" styleClass="submit-button" text="Submit" textFill="#f21010" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="4" />
         <TextField fx:id="userIdField" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="2" />
         <PasswordField fx:id="passwordField" onAction="#handleSubmitAction" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="3" />
-        <Label text="Login" textFill="#31337a" underline="false" GridPane.columnIndex="0" GridPane.rowIndex="1">
+        <Label text="Login" textFill="BLACK" underline="false" GridPane.columnIndex="0" GridPane.rowIndex="1">
           <font>
             <Font size="24.0" fx:id="x1" />
           </font>
@@ -47,7 +47,7 @@
         <RowConstraints maxHeight="30.0" minHeight="10.0" prefHeight="30.0" />
       </rowConstraints>
     </GridPane>
-    <Label alignment="CENTER" font="$x1" layoutX="18.0" layoutY="55.0" prefHeight="21.0" prefWidth="570.0" text="Welcome to Library Management System" textFill="#ab1919" />
+    <Label alignment="CENTER" font="$x1" layoutX="9.0" layoutY="55.0" prefHeight="21.0" prefWidth="570.0" styleClass="main-menu-header" text="Welcome to Library Management System" textFill="#ab1919" wrapText="false" />
   </children>
   <stylesheets>
     <URL value="@style.css" />

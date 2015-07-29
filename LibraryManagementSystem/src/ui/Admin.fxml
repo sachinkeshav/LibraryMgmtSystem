@@ -1,32 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.*?>
-<?import javafx.scene.text.*?>
-<?import javafx.scene.control.*?>
 <?import java.lang.*?>
+<?import java.net.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="674.0" prefWidth="801.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.AdminController">
-   <children>
-      <Button layoutX="7.0" layoutY="119.0" mnemonicParsing="false" onAction="#handleNewMember" prefHeight="25.0" prefWidth="128.0" text="Add Member" textFill="#d71616" />
-      <Button layoutX="7.0" layoutY="181.0" mnemonicParsing="false" onAction="#handleNewBook" prefHeight="25.0" prefWidth="128.0" text="Add Book" textFill="#e41515" />
-      <Button layoutX="7.0" layoutY="248.0" mnemonicParsing="false" onAction="#handleEditBook" prefHeight="25.0" prefWidth="128.0" text="Edit Member" textFill="#ee1313" />
-      <Label layoutX="118.0" layoutY="22.0" prefHeight="33.0" prefWidth="474.0" text="Library Management System" textFill="#ae1b1b">
-         <font>
-            <Font size="27.0" />
-         </font>
-      </Label>
-      <Label layoutX="14.0" layoutY="69.0" text="Admin Panel" textFill="#2d36e3" underline="true" wrapText="true">
-         <font>
-            <Font size="18.0" />
-         </font>
-      </Label>
-      <Button layoutY="309.0" mnemonicParsing="false" onAction="#handleNewCopy" prefHeight="25.0" prefWidth="128.0" text="Add Copy" textFill="#cd1818" />
-      <ScrollPane fx:id="scrollContainer" layoutX="141.0" layoutY="93.0" prefHeight="518.0" prefWidth="615.0">
-         <content>
-           
-         </content>
-      </ScrollPane>
-   </children>
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="674.0" prefWidth="801.0" styleClass="root" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="ui.AdminController">
+  <children>
+    <Button layoutX="14.0" layoutY="212.0" mnemonicParsing="false" onAction="#handleNewMember" prefHeight="33.0" prefWidth="128.0" text="Add Member" textFill="#d71616" />
+    <Button layoutX="14.0" layoutY="296.0" mnemonicParsing="false" onAction="#handleNewBook" prefHeight="33.0" prefWidth="128.0" text="Add Book" textFill="#e41515" />
+    <Button layoutX="14.0" layoutY="378.0" mnemonicParsing="false" onAction="#handleEditBook" prefHeight="33.0" prefWidth="128.0" text="Edit Member" textFill="#ee1313" />
+    <Label layoutX="166.0" layoutY="16.0" prefHeight="33.0" prefWidth="474.0" text="Library Management System" textFill="#ae1b1b">
+      <font>
+        <Font size="27.0" />
+      </font>
+    </Label>
+    <Label layoutX="166.0" layoutY="71.0" text="Admin Panel" textFill="BLACK" underline="false" wrapText="true">
+      <font>
+        <Font size="18.0" />
+      </font>
+    </Label>
+    <Button layoutX="14.0" layoutY="459.0" mnemonicParsing="false" onAction="#handleNewCopy" prefHeight="33.0" prefWidth="128.0" text="Add Copy" textFill="#cd1818" />
+    <ScrollPane fx:id="scrollContainer" content="$null" layoutX="166.0" layoutY="119.0" prefHeight="517.9999000000025" prefWidth="590.0" />
+  </children>
+  <stylesheets>
+    <URL value="@style.css" />
+  </stylesheets>
 </AnchorPane>

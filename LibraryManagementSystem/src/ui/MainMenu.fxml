@@ -13,9 +13,9 @@
 
 <GridPane id="" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="578.0" prefWidth="628.0" styleClass="root" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.AuthController">
 	<children>
-		<Label styleClass="main-menu-header" text="Library Management System" textFill="#941212">
+		<Label styleClass="header" text="Library Management System" textFill="#941212">
 			<font>
-				<Font name="System Bold Italic" size="28.0" />
+				<Font size="28.0" />
 			</font>
 			<GridPane.margin>
 				<Insets left="90.0" />
