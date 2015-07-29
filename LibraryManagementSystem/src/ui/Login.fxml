@@ -23,11 +23,11 @@
       <Insets bottom="25.0" left="25.0" right="25.0" top="25.0" />
    </padding>
    <children>
-      <Label text="Library Management System" GridPane.columnSpan="2" />
+      <Label text="Welcome to Library Management System" GridPane.columnSpan="3" />
       <Label text="Login" GridPane.rowIndex="1" />
       <Label text="Username" GridPane.rowIndex="2" />
       <Label text="Password" GridPane.rowIndex="3" />
-      <Button mnemonicParsing="false" text="Submit" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="4" onAction="#handleSubmitButtonAction"/>
+      <Button fx:id="submit" mnemonicParsing="false" text="Submit" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="4" onAction="#handleSubmitButtonAction"/>
       <TextField fx:id="userIdField" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="2" />
       <PasswordField fx:id="passwordField" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="3" />
    </children>
