@@ -58,6 +58,8 @@ public class LibrarianController {
 					success.setHeaderText("Successfully checked out!");
 					success.show();
 				}
+				memberId.clear();
+				isbn.clear();
 			}
 		} catch (LibrarySystemException ex) {
 			Alert alert = new Alert(AlertType.ERROR);
