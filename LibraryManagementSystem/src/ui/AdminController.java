@@ -58,9 +58,9 @@ public class AdminController {
 		return phone.getText();
 	}
 
-	public String getIsbn() {
+	/*public String getIsbn() {
 		return isbn.getText();
-	}
+	}*/
 
 	@FXML
 	private GridPane addMemberGrid;
@@ -128,6 +128,7 @@ public class AdminController {
 						zip.getText());
 				controller.addNewMember(memberId.getText(), firstName.getText(), lastName.getText(), phone.getText(),
 						address);
+				System.out.println("successfully updated");
 			} catch (LibrarySystemException e2) {
 				Alert alert = new Alert(AlertType.ERROR);
 				alert.setTitle("Failed!");

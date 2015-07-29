@@ -16,9 +16,9 @@ final public class MemberRuleSet implements RuleSet {
 
 	private void applyNonEmptyFieldsRule(AdminController admin) throws RuleException {
 		if ((admin.getMemberId().isEmpty()) || (admin.getCity().isEmpty()) || admin.getFirstName().isEmpty()
-				|| admin.getLastName().isEmpty() || admin.getIsbn().isEmpty() || admin.getPhone().isEmpty()
-				|| admin.getState().isEmpty() || admin.getStreet().isEmpty() || admin.getZip().isEmpty()) {
-			throw new RuleException("Empty fields found !!");
+				|| admin.getLastName().isEmpty() || admin.getPhone().isEmpty() || admin.getState().isEmpty()
+				|| admin.getStreet().isEmpty() || admin.getZip().isEmpty()) {
+			throw new RuleException("Empty field(s) found !!");
 		}
 	}
 
