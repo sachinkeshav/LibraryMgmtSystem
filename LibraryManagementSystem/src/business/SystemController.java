@@ -1,8 +1,6 @@
 package business;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 
 import dataaccess.Auth;
 import dataaccess.DataAccess;
@@ -49,14 +47,10 @@ public class SystemController implements ControllerInterface {
 	 * 
 	 */
 
+	@Override
 	public void addNewMember(String memberId, String firstName, String lastName, String telNumber, Address addr)
 			throws LibrarySystemException {
 		DataAccess dataAccess = new DataAccessFacade();
-		/*
-		 * List<LibraryMember> memberList = new ArrayList<>();
-		 * memberList.add(new LibraryMember(firstName, lastName, telNumber,
-		 * addr, memberId));
-		 */
 		HashMap<String, LibraryMember> map = dataAccess.readMemberMap();
 		if (map.containsKey(memberId)) {
 			throw new LibrarySystemException("Member already exists");
@@ -69,6 +63,7 @@ public class SystemController implements ControllerInterface {
 	 * 1001... Returns a LibraryMember if found, null otherwise
 	 * 
 	 */
+	@Override
 	public LibraryMember search(String memberId) {
 
 		System.out.println("test");
@@ -111,6 +106,10 @@ public class SystemController implements ControllerInterface {
 		if (book == null)
 			throw new LibrarySystemException("No book with isbn " + isbn + " is in the library collection!");
 		book.addCopy();
+
+		DataAccess da = new DataAccessFacade();
+		da.saveNewBook(book);
+
 		return true;
 	}
 

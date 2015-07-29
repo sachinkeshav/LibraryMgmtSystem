@@ -6,16 +6,16 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="297.0" prefWidth="429.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane fx:controller="ui.AdminController" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="297.0" prefWidth="324.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Label layoutX="106.0" layoutY="155.0" text="ISBN">
          <font>
             <Font size="19.0" />
          </font>
       </Label>
-      <TextField layoutX="198.0" layoutY="150.0" prefHeight="33.0" prefWidth="171.0" />
-      <Button layoutX="236.0" layoutY="215.0" mnemonicParsing="false" text="Save" />
-      <Label layoutX="162.0" layoutY="78.0" text="Add New Copy" textFill="#e11616">
+      <TextField fx:id="isbn" layoutX="198.0" layoutY="150.0" prefHeight="33.0" prefWidth="171.0" />
+      <Button layoutX="236.0" layoutY="215.0" mnemonicParsing="false" text="Save" onAction="#handleSaveCopy" />
+      <Label layoutX="162.0" layoutY="78.0" text="Add New Copy" textFill="#e11616" >
          <font>
             <Font size="27.0" />
          </font>

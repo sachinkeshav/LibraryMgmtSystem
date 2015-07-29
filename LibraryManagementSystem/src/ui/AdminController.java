@@ -3,6 +3,7 @@ package ui;
 import java.io.IOException;
 
 import business.Address;
+import business.Book;
 import business.ControllerInterface;
 import business.LibrarySystemException;
 import business.SystemController;
@@ -20,10 +21,11 @@ public class AdminController {
 
 	// addMember controls
 	@FXML
-	TextField memberId, firstName, lastName, street, city, state, zip, phone;
+	TextField memberId, firstName, lastName, street, city, state, zip, phone, isbn;
 
 	@FXML
 	private GridPane addMemberGrid;
+
 	@FXML
 	private ScrollPane scrollContainer;
 
@@ -37,6 +39,23 @@ public class AdminController {
 	public void handleNewCopy(ActionEvent e) throws IOException {
 		Parent root = FXMLLoader.load(getClass().getResource("AddCopy.fxml"));
 		scrollContainer.setContent(root);
+	}
+
+	@FXML
+	public void handleSaveCopy(ActionEvent e) throws IOException {
+		String isbnVal = isbn.getText();
+		ControllerInterface controller = SystemController.getInstance();
+		try {
+			controller.addBookCopy(isbnVal);
+			Book book = controller.searchBook(isbnVal);
+			System.out.println("Successfully added a copy of " + book.getTitle());
+		} catch (LibrarySystemException e1) {
+			Alert alert = new Alert(AlertType.ERROR);
+			alert.setTitle("Error!");
+			alert.setHeaderText("Incorrect ISBN information!");
+			alert.setContentText(e1.getMessage());
+			alert.show();
+		}
 	}
 
 	@FXML
