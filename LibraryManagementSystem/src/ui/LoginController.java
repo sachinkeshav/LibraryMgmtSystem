@@ -9,7 +9,6 @@ import dataaccess.Auth;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
@@ -56,8 +55,6 @@ public class LoginController {
 			stage.show();
 			userIdField.clear();
 			passwordField.clear();
-			Parent root =FXMLLoader.load(getClass().getResource("Login.fxml"));
-
 			Stage loginStage = (Stage) submit.getScene().getWindow();
 			loginStage.close();
 
