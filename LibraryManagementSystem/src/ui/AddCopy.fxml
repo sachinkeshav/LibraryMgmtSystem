@@ -1,24 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.text.*?>
-<?import javafx.scene.control.*?>
 <?import java.lang.*?>
+<?import java.net.*?>
+<?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane fx:controller="ui.AdminController" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="297.0" prefWidth="324.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
-   <children>
-      <Label layoutX="106.0" layoutY="155.0" text="ISBN">
-         <font>
-            <Font size="19.0" />
-         </font>
-      </Label>
-      <TextField fx:id="isbn" layoutX="198.0" layoutY="150.0" prefHeight="33.0" prefWidth="171.0" onAction="#handleSaveCopy" />
-      <Button layoutX="236.0" layoutY="215.0" mnemonicParsing="false" text="Save" onAction="#handleSaveCopy" />
-      <Label layoutX="162.0" layoutY="78.0" text="Add New Copy" textFill="#e11616" >
-         <font>
-            <Font size="27.0" />
-         </font>
-      </Label>
-   </children>
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="297.0" prefWidth="483.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="ui.AdminController">
+  <children>
+    <Label layoutX="170.0" layoutY="192.0" styleClass="members" text="ISBN:">
+      <font>
+        <Font size="19.0" />
+      </font>
+    </Label>
+    <TextField fx:id="isbn" layoutX="242.0" layoutY="187.0" onAction="#handleSaveCopy" prefHeight="33.0" prefWidth="171.0" />
+    <Button layoutX="242.0" layoutY="252.0" mnemonicParsing="false" onAction="#handleSaveCopy" prefHeight="32.0" prefWidth="62.0" text="Save" />
+    <Label layoutX="192.0" layoutY="103.0" styleClass="main-menu-header" text="Add New Copy" textFill="BLACK">
+      <font>
+        <Font size="27.0" />
+      </font>
+    </Label>
+  </children>
+  <stylesheets>
+    <URL value="@style.css" />
+  </stylesheets>
 </AnchorPane>
