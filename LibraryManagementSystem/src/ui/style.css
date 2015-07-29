@@ -4,5 +4,18 @@
 
 .submit-button {
 	-fx-font-weight: bold;
-	-fx-font-family: cursive;
+}
+
+.header {
+	-fx-font-weight: bold;
+	-fx-font-size: 28.0px;
+}
+
+.main-menu-header {
+	-fx-font-weight: bold;
+	-fx-font-size: 25.0px;
+}
+
+.members{
+	-fx-font-size: 18.0px;
 }
