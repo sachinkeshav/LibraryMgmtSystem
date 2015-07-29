@@ -91,20 +91,18 @@ public class LibrarianController {
 
 	}
 
-	@FXML public void handleSearchByMemberId() {
+	@FXML
+	public void handleSearchByMemberId() {
 		SystemController controller = SystemController.getInstance();
 		LibraryMember member = null;
 		try {
 			member = controller.search(memberId.getText());
-			System.out.println(member);
-			List<CheckoutRecordEntry> checkoutRecordEntries = member.getCheckoutRecord().getCheckoutRecordEntries();
-			System.out.println("MemberId " + memberId.getText());
-			System.out.println("ISBN\t\tTitle\t\tAuthor(s)\t\tCopyNumber\t\tCheckoutDate\t\tDueDate");
-			for (CheckoutRecordEntry entry : checkoutRecordEntries) {
-				System.out.println(
-						entry.getCopyNum().getBook().getIsbn() + " " + entry.getCopyNum().getBook().getTitle() + " "
-								+ entry.getCopyNum().getBook().getAuthors() + "\t " + entry.getCopyNum().getCopyNum()
-								+ "\t\t\t " + entry.getCheckoutDate() + "\t \t" + entry.getCheckoutDate());
+			Alert alert = new Alert(AlertType.CONFIRMATION, "Print All Records?", ButtonType.YES, ButtonType.NO,
+					ButtonType.CANCEL);
+			alert.showAndWait();
+			if (alert.getResult() == ButtonType.YES) {
+				print(member);
+				memberId.clear();
 			}
 		} catch (LibrarySystemException e) {
 			Alert alert = new Alert(AlertType.ERROR);
@@ -115,6 +113,17 @@ public class LibrarianController {
 
 		}
 
+	}
+
+	private void print(LibraryMember member) {
+		List<CheckoutRecordEntry> checkoutRecordEntries = member.getCheckoutRecord().getCheckoutRecordEntries();
+		System.out.println("MemberId " + memberId.getText());
+		System.out.println("ISBN\t\tTitle\t\tAuthor(s)\t\tCopyNumber\t\tCheckoutDate\t\tDueDate");
+		for (CheckoutRecordEntry entry : checkoutRecordEntries) {
+			System.out.println(entry.getCopyNum().getBook().getIsbn() + " " + entry.getCopyNum().getBook().getTitle()
+					+ " " + entry.getCopyNum().getBook().getAuthors() + "\t " + entry.getCopyNum().getCopyNum()
+					+ "\t\t\t " + entry.getCheckoutDate() + "\t \t" + entry.getCheckoutDate());
+		}
 	}
 
 }
