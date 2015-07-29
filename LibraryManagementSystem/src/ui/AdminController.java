@@ -16,12 +16,51 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
+import ruleset.RuleException;
+import ruleset.RuleSet;
+import ruleset.RuleSetFactory;
 
 public class AdminController {
 
 	// addMember controls
 	@FXML
 	TextField memberId, firstName, lastName, street, city, state, zip, phone, isbn;
+
+	public String getMemberId() {
+		return memberId.getText();
+	}
+
+	public String getFirstName() {
+		return firstName.getText();
+	}
+
+	public String getLastName() {
+		return lastName.getText();
+	}
+
+	public String getStreet() {
+		return street.getText();
+	}
+
+	public String getCity() {
+		return city.getText();
+	}
+
+	public String getState() {
+		return state.getText();
+	}
+
+	public String getZip() {
+		return zip.getText();
+	}
+
+	public String getPhone() {
+		return phone.getText();
+	}
+
+	public String getIsbn() {
+		return isbn.getText();
+	}
 
 	@FXML
 	private GridPane addMemberGrid;
@@ -79,18 +118,30 @@ public class AdminController {
 
 	@FXML
 	public void handleSaveMemberButton(ActionEvent e) {
+
+		RuleSet adminRules = RuleSetFactory.getRuleSet(AdminController.this);
 		try {
-			ControllerInterface controller = SystemController.getInstance();
-			Address address = controller.addAddress(street.getText(), city.getText(), state.getText(), zip.getText());
-			controller.addNewMember(memberId.getText(), firstName.getText(), lastName.getText(), phone.getText(),
-					address);
-		} catch (LibrarySystemException e2) {
+			adminRules.applyRules(AdminController.this);
+			try {
+				ControllerInterface controller = SystemController.getInstance();
+				Address address = controller.addAddress(street.getText(), city.getText(), state.getText(),
+						zip.getText());
+				controller.addNewMember(memberId.getText(), firstName.getText(), lastName.getText(), phone.getText(),
+						address);
+			} catch (LibrarySystemException e2) {
+				Alert alert = new Alert(AlertType.ERROR);
+				alert.setTitle("Failed!");
+				alert.setHeaderText("Error");
+				alert.setContentText(e2.getMessage());
+				alert.show();
+			}
+		} catch (RuleException e11) {
 			Alert alert = new Alert(AlertType.ERROR);
-			alert.setTitle("Failed!");
 			alert.setHeaderText("Error");
-			alert.setContentText(e2.getMessage());
+			alert.setContentText(e11.getMessage());
 			alert.show();
 		}
+
 	}
 
 }
