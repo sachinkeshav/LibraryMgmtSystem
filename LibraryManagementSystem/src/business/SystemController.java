@@ -119,40 +119,31 @@ public class SystemController implements ControllerInterface {
 	}
 
 	@Override
-	public void checkoutBook(String memberId, String isbn) throws LibrarySystemException {
-		if (search(memberId) != null) {
-			if (searchBook(isbn) != null) {
-				Book currentBook = searchBook(isbn);
-				BookCopy[] book = currentBook.getCopies();
-				for (BookCopy bc : book) {
-					if (computeStatus(bc)) {
-						DataAccessFacade dc = new DataAccessFacade();
-						LocalDate currentDate = LocalDate.now();
-						LocalDate dueDate = currentDate.plusDays(bc.getBook().getMaxCheckoutLength());
-						CheckoutRecordEntry newCheckoutRecordEntry = new CheckoutRecordEntry(currentDate, dueDate, bc);
-						LibraryMember member = search(memberId);
-						CheckoutRecord rc = member.getCheckoutRecord();
-						if (rc.getCheckoutRecordEntries() == null) {
-							List<CheckoutRecordEntry> entries = new ArrayList<>();
-							entries.add(newCheckoutRecordEntry);
-							member.getCheckoutRecord().setCheckoutRecordEntries(entries);
-						} else {
-							member.getCheckoutRecord().getCheckoutRecordEntries().add(newCheckoutRecordEntry);
-						}
-						bc.changeAvailability();
-						dc.updateMember(member);
-						dc.saveNewBook(currentBook);
-						break;
-					}else{
-						throw new LibrarySystemException("No book copy with isbn " + isbn + " is in the library collection!");
-					}
+	public boolean checkoutBook(String memberId, String isbn) throws LibrarySystemException {
+		Book currentBook = searchBook(isbn);
+		BookCopy[] book = currentBook.getCopies();
+		for (BookCopy bc : book) {
+			if (computeStatus(bc)) {
+				DataAccessFacade dc = new DataAccessFacade();
+				LocalDate currentDate = LocalDate.now();
+				LocalDate dueDate = currentDate.plusDays(bc.getBook().getMaxCheckoutLength());
+				CheckoutRecordEntry newCheckoutRecordEntry = new CheckoutRecordEntry(currentDate, dueDate, bc);
+				LibraryMember member = search(memberId);
+				CheckoutRecord rc = member.getCheckoutRecord();
+				if (rc.getCheckoutRecordEntries() == null) {
+					List<CheckoutRecordEntry> entries = new ArrayList<>();
+					entries.add(newCheckoutRecordEntry);
+					member.getCheckoutRecord().setCheckoutRecordEntries(entries);
+				} else {
+					member.getCheckoutRecord().getCheckoutRecordEntries().add(newCheckoutRecordEntry);
 				}
-			} else {
-				throw new LibrarySystemException("No book with isbn " + isbn + " is in the library collection!");
+				bc.changeAvailability();
+				dc.updateMember(member);
+				dc.saveNewBook(currentBook);
+				return true;
 			}
-		} else {
-			throw new LibrarySystemException("No member with id " + memberId + " is in the library system!");
 		}
+		return false;
 
 	}
 
@@ -161,8 +152,25 @@ public class SystemController implements ControllerInterface {
 		return copy.isAvailable();
 	}
 
-	public boolean availableForCheckout(String memberId, String isbn) {
-		return false;
+	public boolean availableForCheckout(String memberId, String isbn) throws LibrarySystemException {
+
+		if (search(memberId) != null) {
+			if (searchBook(isbn) != null) {
+				Book currentBook = searchBook(isbn);
+				BookCopy[] book = currentBook.getCopies();
+				for (BookCopy bc : book) {
+					if (computeStatus(bc)) {
+						return true;
+					}
+				}
+				throw new LibrarySystemException("No book copy with isbn " + isbn + " is in the library collection!");
+			} else {
+				throw new LibrarySystemException("No book with isbn " + isbn + " is in the library collection!");
+			}
+		} else {
+			throw new LibrarySystemException("No member with id " + memberId + " is in the library system!");
+		}
+
 	}
 
 }
