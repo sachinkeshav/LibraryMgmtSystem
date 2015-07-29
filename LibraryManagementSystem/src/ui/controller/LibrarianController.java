@@ -87,6 +87,16 @@ public class LibrarianController {
 	}
 
 	public void handleSearchByMemberId() {
+		SystemController controller = SystemController.getInstance();
+		LibraryMember member = controller.search(memberId.getText());
+		List<CheckoutRecordEntry> checkoutRecordEntries = member.getCheckoutRecord().getCheckoutRecordEntries();
+		System.out.println("MemberId " + memberId.getText());
+		System.out.println("ISBN\t\tTitle\t\tAuthor(s)\t\tCopyNumber\t\tCheckoutDate\t\tDueDate");
+		for (CheckoutRecordEntry entry : checkoutRecordEntries) {
+			System.out.println(entry.getCopyNum().getBook().getIsbn() + " " + entry.getCopyNum().getBook().getTitle()
+					+ " " + entry.getCopyNum().getBook().getAuthors() + "\t " + entry.getCopyNum().getCopyNum()
+					+ "\t\t\t " + entry.getCheckoutDate() + "\t \t" + entry.getCheckoutDate());
+		}
 
 	}
 
