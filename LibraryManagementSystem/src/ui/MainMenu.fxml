@@ -1,12 +1,54 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.text.*?>
-<?import javafx.scene.control.*?>
 <?import java.lang.*?>
+<?import java.net.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.*?>
 
-<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="578.0" prefWidth="628.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.AuthController">
+<GridPane id="" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="578.0" prefWidth="628.0" styleClass="root" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="ui.AuthController">
+  <children>
+    <Label styleClass="main-menu-header" text="Library Management System" textFill="#941212">
+      <font>
+        <Font name="System Bold Italic" size="28.0" />
+      </font>
+      <GridPane.margin>
+        <Insets left="90.0" />
+      </GridPane.margin>
+    </Label>
+    <ImageView fitHeight="143.0" fitWidth="143.0" mouseTransparent="false" onMouseClicked="#handleLibrarianAuth" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="0" GridPane.rowIndex="1">
+      <image>
+        <Image url="@icons/library.png" />
+      </image>
+      <GridPane.margin>
+        <Insets bottom="70.0" left="90.0" />
+      </GridPane.margin>
+    </ImageView>
+    <Label prefHeight="44.0" prefWidth="114.0" text="Librarian" GridPane.columnIndex="0" GridPane.rowIndex="1">
+      <font>
+        <Font name="System Bold" size="23.0" fx:id="x1" />
+      </font>
+      <GridPane.margin>
+        <Insets left="100.0" top="120.0" />
+      </GridPane.margin>
+    </Label>
+    <ImageView fitHeight="149.0" fitWidth="149.0" onMouseClicked="#handleAdminAuth" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="0" GridPane.rowIndex="1">
+      <image>
+        <Image url="@icons/administrator.png" />
+      </image>
+      <GridPane.margin>
+        <Insets bottom="70.0" left="380.0" />
+      </GridPane.margin>
+    </ImageView>
+    <Label font="$x1" text="Administrator" GridPane.columnIndex="0" GridPane.rowIndex="1">
+      <GridPane.margin>
+        <Insets left="375.0" top="120.0" />
+      </GridPane.margin>
+    </Label>
+  </children>
   <columnConstraints>
     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
   </columnConstraints>
@@ -14,53 +56,7 @@
     <RowConstraints maxHeight="192.0" minHeight="10.0" prefHeight="80.0" vgrow="SOMETIMES" />
     <RowConstraints maxHeight="321.0" minHeight="10.0" prefHeight="320.0" vgrow="SOMETIMES" />
   </rowConstraints>
-   <children>
-      <SplitPane dividerPositions="0.46488294314381273" prefHeight="160.0" prefWidth="200.0" GridPane.rowIndex="1">
-        <items>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
-               <children>
-                  <GridPane fx:id="librarianBtn" layoutX="62.0" layoutY="85.0" prefHeight="74.0" prefWidth="132.0">
-                    <columnConstraints>
-                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                    </columnConstraints>
-                    <rowConstraints>
-                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                    </rowConstraints>
-                     <children>
-                        <Button mnemonicParsing="false" onAction="#handleLibrarianAuth" prefHeight="72.0" prefWidth="124.0" text="Library" textFill="#eb1e1e">
-                           <font>
-                              <Font size="25.0" />
-                           </font>
-                        </Button>
-                     </children>
-                  </GridPane>
-               </children>
-            </AnchorPane>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
-               <children>
-                  <GridPane fx:id="adminBtn" layoutX="47.0" layoutY="78.0" prefHeight="81.0" prefWidth="141.0">
-                    <columnConstraints>
-                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                    </columnConstraints>
-                    <rowConstraints>
-                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                    </rowConstraints>
-                     <children>
-                        <Button mnemonicParsing="false" onAction="#handleAdminAuth" prefHeight="79.0" prefWidth="135.0" text="Admin" textFill="#c61b1b">
-                           <font>
-                              <Font size="25.0" />
-                           </font>
-                        </Button>
-                     </children>
-                  </GridPane>
-               </children>
-            </AnchorPane>
-        </items>
-      </SplitPane>
-      <Label text="      Library Management System" textFill="#941212">
-         <font>
-            <Font name="System Bold Italic" size="28.0" />
-         </font>
-      </Label>
-   </children>
+  <stylesheets>
+    <URL value="@style.css" />
+  </stylesheets>
 </GridPane>

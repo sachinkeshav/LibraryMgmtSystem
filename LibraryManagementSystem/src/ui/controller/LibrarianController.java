@@ -91,7 +91,7 @@ public class LibrarianController {
 
 	}
 
-	public void handleSearchByMemberId() {
+	@FXML public void handleSearchByMemberId() {
 		SystemController controller = SystemController.getInstance();
 		LibraryMember member = null;
 		try {

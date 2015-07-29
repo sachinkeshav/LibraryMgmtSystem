@@ -1,0 +1,8 @@
+.root {
+	-fx-background-color: aqua;
+}
+
+.submit-button {
+	-fx-font-weight: bold;
+	-fx-font-family: cursive;
+}
