@@ -1,6 +1,5 @@
 package ruleset;
 
-import java.awt.Component;
 import java.util.HashMap;
 
 import ui.AdminController;

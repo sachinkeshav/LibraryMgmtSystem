@@ -1,6 +1,6 @@
 package ui.controller;
 
-import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 import business.CheckoutRecordEntry;
@@ -28,15 +28,15 @@ public class LibrarianController {
 	private TextField isbn;
 
 	@FXML
-	private TableView table;
+	private TableView<CheckoutData> table;
 	@FXML
-	private TableColumn memberIdCol;
+	private TableColumn<CheckoutData, String> memberIdCol;
 	@FXML
-	private TableColumn bookCol;
+	private TableColumn<CheckoutData, String> bookCol;
 	@FXML
-	private TableColumn issueDateCol;
+	private TableColumn<CheckoutData, String> issueDateCol;
 	@FXML
-	private TableColumn dueDateCol;
+	private TableColumn<CheckoutData, CheckoutData> dueDateCol;
 
 	@FXML
 	public void searchButtonAction(ActionEvent evt) {
@@ -74,17 +74,21 @@ public class LibrarianController {
 		try {
 			member = mainController.search(memberId.getText());
 			List<CheckoutRecordEntry> checkoutRecordEntries = member.getCheckoutRecord().getCheckoutRecordEntries();
-			CheckoutRecordEntry currentEntry = checkoutRecordEntries.get(checkoutRecordEntries.size() - 1);
-			int copyNum = currentEntry.getCopyNum().getCopyNum();
-			LocalDate dueDate = currentEntry.getDueDate();
-			LocalDate checkoutDate = currentEntry.getCheckoutDate();
 
-			ObservableList<CheckoutRecordEntry> data = FXCollections.observableArrayList(checkoutRecordEntries);
-			for (int i = (data.size() - 1); i > 0; i--) {
-				dueDateCol.setCellValueFactory(new PropertyValueFactory<>("dueDate"));
-				issueDateCol.setCellValueFactory(new PropertyValueFactory<>("checkoutDate"));
-				table.setItems(data);
+			List<CheckoutData> list = new ArrayList<>();
+			for (CheckoutRecordEntry currentEntry : checkoutRecordEntries) {
+				list.add(new CheckoutData(memberId.getText(), currentEntry.getCopyNum().getBook().getTitle(),
+						currentEntry.getCheckoutDate(), currentEntry.getDueDate()));
 			}
+
+			ObservableList<CheckoutData> data = FXCollections.observableArrayList(list);
+
+			memberIdCol.setCellValueFactory(new PropertyValueFactory<>("memberId"));
+			bookCol.setCellValueFactory(new PropertyValueFactory<>("title"));
+			dueDateCol.setCellValueFactory(new PropertyValueFactory<>("dueDate"));
+			issueDateCol.setCellValueFactory(new PropertyValueFactory<>("checkoutDate"));
+
+			table.setItems(data);
 		} catch (LibrarySystemException e) {
 			e.printStackTrace();
 		}
