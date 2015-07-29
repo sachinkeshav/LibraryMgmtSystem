@@ -7,7 +7,7 @@ public class LibraryMember extends Person implements Serializable {
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = -3438301790182522805L;
+	private static final long serialVersionUID = 3668658717010296900L;
 	private String memberId;
 	private CheckoutRecord checkoutRecord;
 

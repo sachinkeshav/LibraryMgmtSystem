@@ -143,6 +143,8 @@ public class SystemController implements ControllerInterface {
 						dc.updateMember(member);
 						dc.saveNewBook(currentBook);
 						break;
+					}else{
+						throw new LibrarySystemException("No book copy with isbn " + isbn + " is in the library collection!");
 					}
 				}
 			} else {
