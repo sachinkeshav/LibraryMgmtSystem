@@ -79,11 +79,11 @@ public class LoginController {
 		}
 	}
 
-	public TextField getUserIdField() {
-		return userIdField;
+	public String getUserIdField() {
+		return userIdField.getText();
 	}
 
-	public TextField getPasswordField() {
-		return passwordField;
+	public String getPasswordField() {
+		return passwordField.getText();
 	}
 }

@@ -13,8 +13,8 @@ public class LoginRuleSet implements RuleSet {
 	}
 
 	private void applyNonEmptyRule(LoginController controller) throws RuleException {
-		String id = controller.getUserIdField().getText();
-		String password = controller.getPasswordField().getText();
+		String id = controller.getUserIdField();
+		String password = controller.getPasswordField();
 
 		if (id.isEmpty() && password.isEmpty())
 			throw new RuleException("Username and paswword field cannot be blank!");
