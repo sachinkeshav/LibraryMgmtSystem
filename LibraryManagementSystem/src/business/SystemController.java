@@ -98,9 +98,31 @@ public class SystemController implements ControllerInterface {
 	 * Looks up book by isbn to see if it exists, throw exceptioni. Else add the
 	 * book to storage
 	 */
-	// public boolean addBook(String isbn, String title, int maxCheckoutLength,
-	// List<Author> authors)
-	// throws LibrarySystemException {
+	@Override
+	public boolean addBook(String isbn, String title, int maxCheckoutLength, List<Author> authors)
+			throws LibrarySystemException {
+		Book book = new Book(isbn, title, maxCheckoutLength, authors);
+		DataAccess da = new DataAccessFacade();
+		da.saveNewBook(book);
+		return false;
+	}
+
+	@Override
+	public Author searchAuthor(String author) {
+		DataAccess da = new DataAccessFacade();
+		return da.searchAuthor(author);
+	}
+
+	@Override
+	public List<Author> getAllAuthors() {
+		DataAccess da = new DataAccessFacade();
+		HashMap<String, Author> authors = da.readAuthorMap();
+		List<Author> authorList = new ArrayList<>();
+		for (Author a : authors.values()) {
+			authorList.add(a);
+		}
+		return authorList;
+	}
 
 	@Override
 	public boolean addBookCopy(String isbn) throws LibrarySystemException {

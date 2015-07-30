@@ -112,7 +112,7 @@ public class AdminController {
 
 	@FXML
 	public void handleNewBook(ActionEvent e) throws IOException {
-		Parent root = FXMLLoader.load(getClass().getResource("../AddBook.fxml"));
+		Parent root = FXMLLoader.load(getClass().getResource("../AddBookTest.fxml"));
 		scrollContainer.setContent(root);
 	}
 

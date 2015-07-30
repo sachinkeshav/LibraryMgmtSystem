@@ -82,10 +82,12 @@ public class TestData {
 		td.bookData();
 		td.libraryMemberData();
 		td.userData();
+		td.authorData();
 		DataAccess da = new DataAccessFacade();
 		System.out.println(da.readBooksMap()+"\n");
 		System.out.println(da.readUserMap()+"\n");
 		System.out.println(da.readMemberMap()+"\n");
+		System.out.println(da.readAuthorMap() + "\n");
 	}
 
 	/// create books
@@ -101,6 +103,10 @@ public class TestData {
 
 	public void userData() {
 		DataAccessFacade.loadUserMap(allUsers);
+	}
+
+	public void authorData() {
+		DataAccessFacade.loadAuthorMap(allAuthors);
 	}
 
 	public void libraryMemberData() {

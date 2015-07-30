@@ -10,6 +10,7 @@ import java.nio.file.Path;
 import java.util.HashMap;
 import java.util.List;
 
+import business.Author;
 import business.Book;
 import business.LibraryMember;
 import business.LibrarySystemException;
@@ -17,13 +18,14 @@ import business.LibrarySystemException;
 public class DataAccessFacade implements DataAccess {
 
 	enum StorageType {
-		BOOKS, MEMBERS, USERS;
+		BOOKS, MEMBERS, USERS, AUTHORS;
 	}
 
 	public static final String OUTPUT_DIR = System.getProperty("user.dir") + "/src/dataaccess/storage";
 	public static final String DATE_PATTERN = "MM/dd/yyyy";
 
 	//// specialized lookup methods
+	@Override
 	public LibraryMember searchMember(String memberId) throws LibrarySystemException{
 		HashMap<String, LibraryMember> libraryMembersmap = readMemberMap();
 		LibraryMember m = libraryMembersmap.get(memberId);
@@ -31,10 +33,18 @@ public class DataAccessFacade implements DataAccess {
 		return m;
 	}
 
+	@Override
 	public Book searchBook(String isbn) {
 		HashMap<String, Book> booksMap = readBooksMap();
 		Book b = booksMap.get(isbn);
 		return b;
+	}
+
+	@Override
+	public Author searchAuthor(String author) {
+		HashMap<String, Author> authorMap = readAuthorMap();
+		Author a = authorMap.get(author);
+		return a;
 	}
 
 	public Auth login(String id, String pwd) {
@@ -59,6 +69,7 @@ public class DataAccessFacade implements DataAccess {
 	}
 
 	// save new lendable item
+	@Override
 	public void saveNewBook(Book book) {
 		HashMap<String, Book> bookMap = readBooksMap();
 		String isbn = book.getIsbn();
@@ -66,21 +77,38 @@ public class DataAccessFacade implements DataAccess {
 		saveToStorage(StorageType.BOOKS, bookMap);
 	}
 
+	@Override
+	public void addNewAuthor(Author author) {
+		HashMap<String, Author> authorMap = readAuthorMap();
+		String a = author.getFirstName() + " " + author.getLastName();
+		authorMap.put(a, author);
+		saveToStorage(StorageType.AUTHORS, authorMap);
+	}
+
 	////// read methods that return full maps
 
+	@Override
 	@SuppressWarnings("unchecked")
 	public HashMap<String, Book> readBooksMap() {
 		return (HashMap<String, Book>) readFromStorage(StorageType.BOOKS);
 	}
 
+	@Override
 	@SuppressWarnings("unchecked")
 	public HashMap<String, LibraryMember> readMemberMap() {
 		return (HashMap<String, LibraryMember>) readFromStorage(StorageType.MEMBERS);
 	}
 
+	@Override
 	@SuppressWarnings("unchecked")
 	public HashMap<String, User> readUserMap() {
 		return (HashMap<String, User>) readFromStorage(StorageType.USERS);
+	}
+
+	@Override
+	@SuppressWarnings("unchecked")
+	public HashMap<String, Author> readAuthorMap() {
+		return (HashMap<String, Author>) readFromStorage(StorageType.AUTHORS);
 	}
 
 	@Override
@@ -110,6 +138,12 @@ public class DataAccessFacade implements DataAccess {
 		HashMap<String, User> users = new HashMap<String, User>();
 		userList.forEach(user -> users.put(user.getId(), user));
 		saveToStorage(StorageType.USERS, users);
+	}
+
+	static void loadAuthorMap(List<Author> authorList) {
+		HashMap<String, Author> authors = new HashMap<String, Author>();
+		authorList.forEach(author -> authors.put(author.getFirstName() + " " + author.getLastName(), author));
+		saveToStorage(StorageType.AUTHORS, authors);
 	}
 
 	static void saveToStorage(StorageType type, Object ob) {
