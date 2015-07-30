@@ -1,5 +1,6 @@
 .root {
-	-fx-background-color: #BDA7AF;
+	/**-fx-background-color: #BDA7AF; **/
+	-fx-background-color: #A7BED3;
 }
 
 .submit-button {
@@ -21,10 +22,11 @@
 }
 
 .table-view, .background-pane{
-	-fx-background-color: #AFD8D8;
+	-fx-background-color: #C6E2E9;
 }
 
 #scrollContainer{
-	-fx-background: #AFD8D8;
+	/** -fx-background: #AFD8D8; **/
+	 -fx-background: #C6E2E9;
 }
 

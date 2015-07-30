@@ -11,7 +11,7 @@
   <children>
     <Label layoutX="172.0" layoutY="131.0" styleClass="members" text="ISBN:" />
     <TextField fx:id="isbn" layoutX="233.0" layoutY="131.0" />
-    <Button layoutX="271.0" layoutY="181.0" mnemonicParsing="false" onAction="#handleOverDue" prefHeight="28.0" prefWidth="70.0" text="Search" />
+    <Button layoutX="271.0" layoutY="181.0" mnemonicParsing="false" onAction="#handleOverDue" prefHeight="28.0" prefWidth="70.0" styleClass="submit-button" text="Search" />
     <TableView fx:id="table" layoutX="21.0" layoutY="248.0" prefHeight="274.0" prefWidth="560.0">
       <columns>
         <TableColumn prefWidth="69.0" text="ISBN" fx:id="isbnCol" />
