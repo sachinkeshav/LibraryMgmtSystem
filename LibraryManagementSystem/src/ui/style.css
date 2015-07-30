@@ -1,5 +1,6 @@
 .root {
-	-fx-background-color: aqua;
+	/**-fx-background-color: #BDA7AF; **/
+	-fx-background-color: #A7BED3;
 }
 
 .submit-button {
@@ -19,3 +20,13 @@
 .members{
 	-fx-font-size: 18.0px;
 }
+
+.table-view, .background-pane{
+	-fx-background-color: #C6E2E9;
+}
+
+#scrollContainer{
+	/** -fx-background: #AFD8D8; **/
+	 -fx-background: #C6E2E9;
+}
+

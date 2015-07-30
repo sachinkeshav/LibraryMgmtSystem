@@ -1,6 +1,8 @@
 package business;
 
+import java.util.HashMap;
 import java.util.List;
+
 
 public interface ControllerInterface {
 	public void login(String id, String password) throws LoginException;
@@ -21,5 +23,6 @@ public interface ControllerInterface {
 //	public void printCheckoutRecord(String memberId) throws LibrarySystemException;
 	public boolean computeStatus(BookCopy copy);
 	public Book searchBook(String isbn);
+	public HashMap<String,LibraryMember> getAllCheckoutEntries();
 	
 }

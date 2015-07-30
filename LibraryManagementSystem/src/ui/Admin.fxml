@@ -10,10 +10,9 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="674.0" prefWidth="801.0" styleClass="root" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="ui.controller.AdminController">
   <children>
-    <Button layoutX="14.0" layoutY="212.0" mnemonicParsing="false" onAction="#handleNewMember" prefHeight="33.0" prefWidth="128.0" text="Add Member" textFill="#d71616" />
-    <Button layoutX="14.0" layoutY="296.0" mnemonicParsing="false" onAction="#handleNewBook" prefHeight="33.0" prefWidth="128.0" text="Add Book" textFill="#e41515" />
-    <Button layoutX="14.0" layoutY="378.0" mnemonicParsing="false" onAction="#handleEditBook" prefHeight="33.0" prefWidth="128.0" text="Edit Member" textFill="#ee1313" />
-    <Label layoutX="166.0" layoutY="16.0" prefHeight="33.0" prefWidth="474.0" text="Library Management System" textFill="#ae1b1b">
+    <Button layoutX="14.0" layoutY="212.0" mnemonicParsing="false" onAction="#handleNewMember" prefHeight="33.0" prefWidth="128.0" text="Add Member" textFill="BLACK" />
+    <Button layoutX="14.0" layoutY="296.0" mnemonicParsing="false" onAction="#handleNewBook" prefHeight="33.0" prefWidth="128.0" text="Add Book" textFill="BLACK" />
+    <Label layoutX="166.0" layoutY="16.0" prefHeight="33.0" prefWidth="474.0" styleClass="header" text="Library Management System" textFill="BLACK">
       <font>
         <Font size="27.0" />
       </font>
@@ -23,8 +22,8 @@
         <Font size="18.0" />
       </font>
     </Label>
-    <Button layoutX="14.0" layoutY="459.0" mnemonicParsing="false" onAction="#handleNewCopy" prefHeight="33.0" prefWidth="128.0" text="Add Copy" textFill="#cd1818" />
-    <ScrollPane fx:id="scrollContainer" content="$null" layoutX="166.0" layoutY="119.0" prefHeight="517.9999000000025" prefWidth="590.0" />
+    <Button layoutX="14.0" layoutY="378.0" mnemonicParsing="false" onAction="#handleNewCopy" prefHeight="33.0" prefWidth="128.0" text="Add Copy" textFill="BLACK" />
+    <ScrollPane fx:id="scrollContainer" layoutX="166.0" layoutY="119.0" prefHeight="517.9999000000025" prefWidth="590.0" styleClass="background-pane" />
   </children>
   <stylesheets>
     <URL value="@style.css" />

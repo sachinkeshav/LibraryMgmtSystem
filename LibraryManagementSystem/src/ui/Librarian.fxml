@@ -9,7 +9,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="588.0" prefWidth="653.0" styleClass="root" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="ui.controller.LibrarianController">
   <children>
-    <Label layoutX="135.0" layoutY="33.0" prefHeight="35.0" prefWidth="435.0" text="Library Management System" textFill="BLACK">
+    <Label layoutX="135.0" layoutY="33.0" prefHeight="35.0" prefWidth="435.0" styleClass="header" text="Library Management System" textFill="BLACK">
       <font>
         <Font size="29.0" />
       </font>
@@ -50,6 +50,7 @@
         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
       </rowConstraints>
     </GridPane>
+    <Button layoutX="370.0" layoutY="303.0" mnemonicParsing="false" onAction="#handleOverdues" prefHeight="24.999900000002526" styleClass="submit-button" text="Overdues" textFill="BLACK" underline="false" />
   </children>
   <stylesheets>
     <URL value="@style.css" />

@@ -1,5 +1,6 @@
 package ui.controller;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,6 +12,8 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ButtonType;
@@ -18,6 +21,12 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import ruleset.RuleException;
+import ruleset.RuleSet;
+import ruleset.RuleSetFactory;
+import javafx.scene.layout.Pane;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 
 public class LibrarianController {
 
@@ -26,6 +35,14 @@ public class LibrarianController {
 
 	@FXML
 	private TextField isbn;
+
+	public String getMemberId() {
+		return memberId.getText();
+	}
+
+	public String getIsbn() {
+		return isbn.getText();
+	}
 
 	@FXML
 	private TableView<CheckoutData> table;
@@ -42,7 +59,10 @@ public class LibrarianController {
 	public void searchButtonAction(ActionEvent evt) {
 		SystemController mainController = SystemController.getInstance();
 		boolean checkout = false;
+		RuleSet librarianRuleSet = RuleSetFactory.getRuleSet(LibrarianController.this);
+
 		try {
+			librarianRuleSet.applyRules(LibrarianController.this);
 			if (mainController.availableForCheckout(memberId.getText(), isbn.getText())) {
 				Alert alert = new Alert(AlertType.CONFIRMATION, "Do you want to checkout?", ButtonType.YES,
 						ButtonType.NO, ButtonType.CANCEL);
@@ -67,7 +87,13 @@ public class LibrarianController {
 			alert.setHeaderText("Incorrect checkout information!");
 			alert.setContentText(ex.getMessage());
 			alert.show();
+		} catch (RuleException e) {
+			Alert alert = new Alert(AlertType.ERROR);
+			alert.setHeaderText("Error");
+			alert.setContentText(e.getMessage());
+			alert.show();
 		}
+
 	}
 
 	public void handleCheckoutButton() {
@@ -130,6 +156,18 @@ public class LibrarianController {
 					+ " " + entry.getCopyNum().getBook().getAuthors() + "\t " + entry.getCopyNum().getCopyNum()
 					+ "\t\t\t " + entry.getCheckoutDate() + "\t \t" + entry.getCheckoutDate());
 		}
+	}
+
+	@FXML
+	protected void handleOverdues(ActionEvent evt) throws IOException {
+		Pane mainMenuRoot = FXMLLoader.load(getClass().getResource("../OverDue.fxml"));
+		Stage stage = new Stage();
+		stage.initModality(Modality.APPLICATION_MODAL);
+		// stage.initStyle(StageStyle.UNDECORATED);
+		stage.setTitle("Overdue Records");
+		stage.setScene(new Scene(mainMenuRoot));
+		stage.show();
+
 	}
 
 }

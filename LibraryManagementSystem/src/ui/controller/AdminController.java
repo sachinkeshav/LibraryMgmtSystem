@@ -58,9 +58,9 @@ public class AdminController {
 		return phone.getText();
 	}
 
-	/*public String getIsbn() {
-		return isbn.getText();
-	}*/
+	/*
+	 * public String getIsbn() { return isbn.getText(); }
+	 */
 
 	@FXML
 	private GridPane addMemberGrid;
@@ -122,20 +122,17 @@ public class AdminController {
 		RuleSet adminRules = RuleSetFactory.getRuleSet(AdminController.this);
 		try {
 			adminRules.applyRules(AdminController.this);
-			try {
-				ControllerInterface controller = SystemController.getInstance();
-				Address address = controller.addAddress(street.getText(), city.getText(), state.getText(),
-						zip.getText());
-				controller.addNewMember(memberId.getText(), firstName.getText(), lastName.getText(), phone.getText(),
-						address);
-				System.out.println("successfully updated");
-			} catch (LibrarySystemException e2) {
-				Alert alert = new Alert(AlertType.ERROR);
-				alert.setTitle("Failed!");
-				alert.setHeaderText("Error");
-				alert.setContentText(e2.getMessage());
-				alert.show();
-			}
+			ControllerInterface controller = SystemController.getInstance();
+			Address address = controller.addAddress(street.getText(), city.getText(), state.getText(), zip.getText());
+			controller.addNewMember(memberId.getText(), firstName.getText(), lastName.getText(), phone.getText(),
+					address);
+			System.out.println("successfully updated");
+		} catch (LibrarySystemException e2) {
+			Alert alert = new Alert(AlertType.ERROR);
+			alert.setTitle("Failed!");
+			alert.setHeaderText("Error");
+			alert.setContentText(e2.getMessage());
+			alert.show();
 		} catch (RuleException e11) {
 			Alert alert = new Alert(AlertType.ERROR);
 			alert.setHeaderText("Error");
