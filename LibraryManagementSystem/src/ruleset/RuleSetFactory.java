@@ -3,6 +3,7 @@ package ruleset;
 import java.util.HashMap;
 
 import ui.controller.AdminController;
+import ui.controller.BookController;
 import ui.controller.LibrarianController;
 import ui.controller.LoginController;
 
@@ -16,6 +17,7 @@ final public class RuleSetFactory {
 		map.put(AdminController.class, new MemberRuleSet());
 		map.put(LoginController.class, new LoginRuleSet());
 		map.put(LibrarianController.class, new LibrarianRuleSet());
+		map.put(BookController.class, new BookRuleSet());
 
 	}
 

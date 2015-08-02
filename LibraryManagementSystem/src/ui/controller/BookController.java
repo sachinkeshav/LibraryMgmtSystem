@@ -20,6 +20,9 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
+import ruleset.RuleException;
+import ruleset.RuleSet;
+import ruleset.RuleSetFactory;
 
 public class BookController {
 
@@ -39,6 +42,7 @@ public class BookController {
 	private Button addAuthor, saveBook;
 
 	private static List<String> existingAuthors = new ArrayList<>();
+	private List<Author> authors;
 
 	@FXML
 	protected void handleComboBox(MouseEvent event) {
@@ -66,17 +70,18 @@ public class BookController {
 	protected void handleSaveBook(ActionEvent event) {
 		String isbn = bookIsbn.getText();
 		String title = bookTitle.getText();
-		int coLenght = Integer.parseInt(checkoutLength.getText());
-		
+
 		ObservableList<AuthorData> ads = authorTable.getItems();
-		 List<Author> authors = new ArrayList<>();
+		authors = new ArrayList<>();
 
 		ControllerInterface controller = SystemController.getInstance();
+		RuleSet bookRule = RuleSetFactory.getRuleSet(this);
 		ads.forEach(ad -> {
 			authors.add(controller.searchAuthor(ad.getName()));
 		});
 		try {
-			// TODO: add rule set and show success message
+			bookRule.applyRules(this);
+			int coLenght = Integer.parseInt(checkoutLength.getText());
 			controller.addBook(isbn, title, coLenght, authors);
 
 			Alert alert = new Alert(AlertType.INFORMATION);
@@ -92,9 +97,18 @@ public class BookController {
 			authorsList.getItems().clear();
 			existingAuthors.clear();
 
+		} catch (RuleException e) {
+			Alert alert = new Alert(AlertType.ERROR);
+			alert.setTitle("Error!");
+			alert.setHeaderText("Incorrect Book Information!");
+			alert.setContentText(e.getMessage());
+			alert.show();
 		} catch (LibrarySystemException e) {
-			// TODO: handle error message
-			e.printStackTrace();
+			Alert alert = new Alert(AlertType.ERROR);
+			alert.setTitle("Error!");
+			alert.setHeaderText("Incorrect Book Information!");
+			alert.setContentText(e.getMessage());
+			alert.show();
 		}
 	}
 
@@ -108,5 +122,21 @@ public class BookController {
 		public String getName() {
 			return name;
 		}
+	}
+
+	public String getBookIsbn() {
+		return bookIsbn.getText();
+	}
+
+	public String getBookTitle() {
+		return bookTitle.getText();
+	}
+
+	public String getCheckoutLength() {
+		return checkoutLength.getText();
+	}
+
+	public List<Author> getAuthors() {
+		return authors;
 	}
 }

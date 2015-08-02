@@ -105,7 +105,7 @@ public class SystemController implements ControllerInterface {
 		Book book = new Book(isbn, title, maxCheckoutLength, authors);
 		DataAccess da = new DataAccessFacade();
 		da.saveNewBook(book);
-		return false;
+		return true;
 	}
 
 	@Override
