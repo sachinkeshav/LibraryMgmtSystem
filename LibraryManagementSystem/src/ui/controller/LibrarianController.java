@@ -18,6 +18,9 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import ruleset.RuleException;
+import ruleset.RuleSet;
+import ruleset.RuleSetFactory;
 
 public class LibrarianController {
 
@@ -26,6 +29,14 @@ public class LibrarianController {
 
 	@FXML
 	private TextField isbn;
+
+	public String getMemberId() {
+		return memberId.getText();
+	}
+
+	public String getIsbn() {
+		return isbn.getText();
+	}
 
 	@FXML
 	private TableView<CheckoutData> table;
@@ -42,7 +53,10 @@ public class LibrarianController {
 	public void searchButtonAction(ActionEvent evt) {
 		SystemController mainController = SystemController.getInstance();
 		boolean checkout = false;
+		RuleSet librarianRuleSet = RuleSetFactory.getRuleSet(LibrarianController.this);
+
 		try {
+			librarianRuleSet.applyRules(LibrarianController.this);
 			if (mainController.availableForCheckout(memberId.getText(), isbn.getText())) {
 				Alert alert = new Alert(AlertType.CONFIRMATION, "Do you want to checkout?", ButtonType.YES,
 						ButtonType.NO, ButtonType.CANCEL);
@@ -67,7 +81,13 @@ public class LibrarianController {
 			alert.setHeaderText("Incorrect checkout information!");
 			alert.setContentText(ex.getMessage());
 			alert.show();
+		} catch (RuleException e) {
+			Alert alert = new Alert(AlertType.ERROR);
+			alert.setHeaderText("Error");
+			alert.setContentText(e.getMessage());
+			alert.show();
 		}
+
 	}
 
 	public void handleCheckoutButton() {
