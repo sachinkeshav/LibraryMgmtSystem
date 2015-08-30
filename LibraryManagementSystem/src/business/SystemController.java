@@ -64,7 +64,8 @@ public class SystemController implements ControllerInterface {
 	/**
 	 * Reads data store for a library member with specified id. Ids begin at
 	 * 1001... Returns a LibraryMember if found, null otherwise
-	 * @throws LibrarySystemException 
+	 * 
+	 * @throws LibrarySystemException
 	 * 
 	 */
 	@Override
@@ -171,6 +172,13 @@ public class SystemController implements ControllerInterface {
 		} else {
 			throw new LibrarySystemException("No member with id " + memberId + " is in the library system!");
 		}
+
+	}
+
+	@Override
+	public HashMap<String, LibraryMember> getAllCheckoutEntries() {
+		DataAccess data = new DataAccessFacade();
+		return data.readMemberMap();
 
 	}
 
