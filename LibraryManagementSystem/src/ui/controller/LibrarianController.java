@@ -1,5 +1,6 @@
 package ui.controller;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,6 +12,8 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ButtonType;
@@ -21,6 +24,9 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import ruleset.RuleException;
 import ruleset.RuleSet;
 import ruleset.RuleSetFactory;
+import javafx.scene.layout.Pane;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 
 public class LibrarianController {
 
@@ -150,6 +156,18 @@ public class LibrarianController {
 					+ " " + entry.getCopyNum().getBook().getAuthors() + "\t " + entry.getCopyNum().getCopyNum()
 					+ "\t\t\t " + entry.getCheckoutDate() + "\t \t" + entry.getCheckoutDate());
 		}
+	}
+
+	@FXML
+	protected void handleOverdues(ActionEvent evt) throws IOException {
+		Pane mainMenuRoot = FXMLLoader.load(getClass().getResource("../OverDue.fxml"));
+		Stage stage = new Stage();
+		stage.initModality(Modality.APPLICATION_MODAL);
+		// stage.initStyle(StageStyle.UNDECORATED);
+		stage.setTitle("Overdue Records");
+		stage.setScene(new Scene(mainMenuRoot));
+		stage.show();
+
 	}
 
 }

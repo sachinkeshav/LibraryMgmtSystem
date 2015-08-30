@@ -1,30 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.text.*?>
-<?import javafx.scene.control.*?>
 <?import java.lang.*?>
+<?import java.net.*?>
+<?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.*?>
 
-
-<AnchorPane fx:controller="ui.controller.OverdueController" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="556.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
-   <children>
-      <Label layoutX="172.0" layoutY="131.0" text="ISBN" />
-      <TextField   fx:id="isbn" layoutX="233.0" layoutY="126.0" />
-      <Button onAction="#handleOverDue" layoutX="288.0" layoutY="181.0" mnemonicParsing="false" text="Search" />
-      <TableView fx:id="table" layoutX="21.0" layoutY="248.0" prefHeight="274.0" prefWidth="560.0">
-        <columns>
-          <TableColumn fx:id="isbnCol" prefWidth="69.0" text="ISBN" />
-          <TableColumn fx:id="titleCol" prefWidth="128.0" text="Book Title" />
-            <TableColumn fx:id="copyNumCol" prefWidth="104.0" text="CopyNumber" />
-            <TableColumn fx:id="dueDateCol" prefWidth="146.0" text="Due Date" />
-            <TableColumn fx:id="checkedByCol" prefWidth="110.0" text="Checked By" />
-        </columns>
-      </TableView>
-      <Label layoutX="170.0" layoutY="73.0" prefHeight="35.0" prefWidth="283.0" text="Search Overdue records " textFill="#d30a0a">
-         <font>
-            <Font size="22.0" />
-         </font>
-      </Label>
-   </children>
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="556.0000999999975" prefWidth="599.9998779296875" styleClass="root" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="ui.controller.OverdueController">
+  <children>
+    <Label layoutX="172.0" layoutY="131.0" styleClass="members" text="ISBN:" />
+    <TextField fx:id="isbn" layoutX="233.0" layoutY="131.0" />
+    <Button layoutX="271.0" layoutY="181.0" mnemonicParsing="false" onAction="#handleOverDue" prefHeight="28.0" prefWidth="70.0" styleClass="submit-button" text="Search" />
+    <TableView fx:id="table" layoutX="21.0" layoutY="248.0" prefHeight="274.0" prefWidth="560.0">
+      <columns>
+        <TableColumn prefWidth="69.0" text="ISBN" fx:id="isbnCol" />
+        <TableColumn prefWidth="128.0" text="Book Title" fx:id="titleCol" />
+        <TableColumn prefWidth="104.0" text="CopyNumber" fx:id="copyNumCol" />
+        <TableColumn prefWidth="146.0" text="Due Date" fx:id="dueDateCol" />
+        <TableColumn prefWidth="110.0" text="Checked By" fx:id="checkedByCol" />
+      </columns>
+    </TableView>
+    <Label layoutX="164.0" layoutY="47.0" prefHeight="35.0" prefWidth="283.0" text="Search Overdue records " textFill="BLACK">
+      <font>
+        <Font size="23.0" />
+      </font>
+    </Label>
+  </children>
+  <stylesheets>
+    <URL value="@style.css" />
+  </stylesheets>
 </AnchorPane>

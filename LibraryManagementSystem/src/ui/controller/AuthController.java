@@ -27,7 +27,7 @@ public class AuthController {
 		Stage stage = new Stage();
 		stage.initModality(Modality.APPLICATION_MODAL);
 		// stage.initStyle(StageStyle.UNDECORATED);
-		stage.setTitle("Main Menu");
+		stage.setTitle("Admin Panel");
 		stage.setScene(new Scene(mainMenuRoot));
 		stage.show();
 	}
@@ -38,7 +38,7 @@ public class AuthController {
 		Stage stage = new Stage();
 		stage.initModality(Modality.APPLICATION_MODAL);
 		// stage.initStyle(StageStyle.UNDECORATED);
-		stage.setTitle("Main Menu");
+		stage.setTitle("Librarian Panel");
 		stage.setScene(new Scene(mainMenuRoot));
 		stage.show();
 	}
