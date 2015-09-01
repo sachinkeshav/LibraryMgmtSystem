@@ -126,7 +126,18 @@ public class AdminController {
 			Address address = controller.addAddress(street.getText(), city.getText(), state.getText(), zip.getText());
 			controller.addNewMember(memberId.getText(), firstName.getText(), lastName.getText(), phone.getText(),
 					address);
-			System.out.println("successfully updated");
+			Alert alert = new Alert(AlertType.CONFIRMATION);
+			alert.setTitle("Success!");
+			alert.setHeaderText("Saved successfuly");
+			alert.show();
+			street.clear();
+			city.clear();
+			state.clear();
+			zip.clear();
+			memberId.clear();
+			firstName.clear();
+			lastName.clear();
+			phone.clear();
 		} catch (LibrarySystemException e2) {
 			Alert alert = new Alert(AlertType.ERROR);
 			alert.setTitle("Failed!");
