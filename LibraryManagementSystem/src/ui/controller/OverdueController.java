@@ -12,9 +12,11 @@ import business.SystemController;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 public class OverdueController {
@@ -56,14 +58,21 @@ public class OverdueController {
 		}
 
 		ObservableList<OverdueData> data = FXCollections.observableArrayList(overDueList);
-
-		isbnCol.setCellValueFactory(new PropertyValueFactory<>("isbn"));
-		titleCol.setCellValueFactory(new PropertyValueFactory<>("title"));
-		copyNumCol.setCellValueFactory(new PropertyValueFactory<>("copyNum"));
-		dueDateCol.setCellValueFactory(new PropertyValueFactory<>("dueDate"));
-		checkedByCol.setCellValueFactory(new PropertyValueFactory<>("checkedBy"));
-
-		table.setItems(data);
+		if (data.isEmpty()) {
+			Alert alert = new Alert(AlertType.INFORMATION);
+			alert.setTitle("Information");
+			alert.setHeaderText("Record not Found !!");
+			alert.show();
+			isbn.clear();
+		} else {
+			isbnCol.setCellValueFactory(new PropertyValueFactory<>("isbn"));
+			titleCol.setCellValueFactory(new PropertyValueFactory<>("title"));
+			copyNumCol.setCellValueFactory(new PropertyValueFactory<>("copyNum"));
+			dueDateCol.setCellValueFactory(new PropertyValueFactory<>("dueDate"));
+			checkedByCol.setCellValueFactory(new PropertyValueFactory<>("checkedBy"));
+			table.setItems(data);
+			isbn.clear();
+		}
 	}
 
 }
